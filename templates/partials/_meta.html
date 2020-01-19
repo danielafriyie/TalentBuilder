@@ -1,0 +1,32 @@
+{% if request.path == '/' %}
+    <meta name="description"
+          content="Get a free professional, well written and targeted CV that showcase your skills
+          and experience in a concise and precise manner plus free portfolio website that will provide the most
+          powerful and comprehensive perspective on you. What are you waiting for? Upload you CV now!
+          Talent Builder - We help you achieve high points!">
+    <meta name="robots" content="index,follow">
+    <meta name="keywords" content="Free CV, Free Resume, Free Portfolio Website, Talent Builder, Professional CV">
+{% endif %}
+
+{% if 'contact' in request.path %}
+    <meta name="description"
+          content="Get in touch with, we are more than happy to answer your queries and help you achieve high points!">
+{% endif %}
+
+{% if 'about' in request.path %}
+    <meta name="description"
+          content="Here at Talent Builder, we are dedicated to helping your career in job search and achieve high points!">
+{% endif %}
+
+{% if 'uploadCV' in request.path %}
+    <meta name="description"
+          content="We are ready to give you that job winning CV. All you have to do is
+          upload your CV and we'll give you your job winning CV.">
+{% endif %}
+
+{% if 'portfolio' in request.path %}
+    <meta name="description"
+          content="Do you want to leave a lasting impression on the recruiter? Do you want to land that
+          dream job? Do you want the hiring manager to think you are the perfect candidate for the job?
+          Don't worry, we've got you covered. Just fill our portfolio website form and get your free portfolio website.">
+{% endif %}

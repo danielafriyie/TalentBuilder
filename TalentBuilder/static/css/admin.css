@@ -1,0 +1,62 @@
+#header {
+    background: rgba(93, 73, 84, 1);
+    color: rgba(226, 226, 226, 1);
+}
+
+#branding h1 {
+    color: rgba(226, 226, 226, 1);
+}
+
+#user-tools {
+    color: rgba(226, 226, 226, 1);
+}
+
+#user-tools a {
+    color: rgba(226, 226, 226, 1);
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: rgba(93, 73, 84, 1);
+    color: rgba(226, 226, 226, 1);
+}
+
+a:link, a:visited {
+    color: rgba(93, 73, 84, 1);
+}
+
+tbody {
+    background: rgba(226, 226, 226, .5);
+}
+
+div.breadcrumbs {
+    background: rgba(93, 73, 84, 1);
+    color: rgba(226, 226, 226, 1);
+}
+
+div.breadcrumbs a {
+    background: rgba(93, 73, 84, 1);
+    color: rgba(226, 226, 226, 1);
+}
+
+.object-tools a:focus, .object-tools a:hover {
+    background: rgba(93, 73, 84, 1);
+    color: rgba(226, 226, 226, 1);
+}
+
+.object-tools a:link, .object-tools a:visited {
+    background: rgba(93, 73, 84, 1);
+    color: rgba(226, 226, 226, 1);
+}
+
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: rgba(93, 73, 84, 1);
+    color: rgba(226, 226, 226, 1);
+    border-radius: 10px;
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    background: rgba(93, 73, 84, 1);
+    color: rgba(226, 226, 226, 1);
+    border-radius: 10px;
+}

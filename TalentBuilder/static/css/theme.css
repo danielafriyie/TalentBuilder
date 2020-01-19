@@ -1,0 +1,61 @@
+/* BLACK THEME */
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a.my-logo {
+    color: brown;
+    font-weight: bold;
+    font-size: 2rem;
+    font-family: 'Niconne', cursive;
+    width: 5rem;
+}
+
+@media screen and (min-width: 992px) {
+    nav#my-dis {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+
+    }
+}
+
+.my-bg {
+    background: rgba(226, 226, 226, 1) !important;
+}
+
+.my-color {
+    color: #5d4954 !important;
+}
+
+.my-nav a {
+    transition: all 1s;
+    font-size: 1rem;
+    font-family: serif;
+    font-weight: bold;
+}
+
+.my-nav a:hover {
+    color: brown !important;
+}
+
+.active-nav {
+    color: brown !important;
+}
+
+.black-theme-bg {
+    background: rgba(0, 0, 0, .8);
+}
+
+.color-3 {
+    color: rgba(226, 226, 226, .7) !important;
+}
+
+.burger {
+    background: rgba(226, 226, 226, .7) !important;
+}
+
+.blue-theme {
+    background: rgba(146, 0, 50, .9) !important;
+}

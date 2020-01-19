@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} | About Us {% endblock %}
+
+{% block content %}
+    <section id="about" class="my-bg-2 py-5">
+        <div class="container my-5">
+            <div id="m-dis">
+                <div>
+                    <img class="img-fluid pb-5" src="{% static 'img/ab.jpeg' %}" alt="about Talent Builder">
+                </div>
+                <div class="my-5">
+                    <div>
+                        {#                    title#}
+                        <h1 class="color-2 text-center">Who we are</h1>
+                        {#       end of title#}
+                    </div>
+                    <hr>
+                    <p class="color-2 lead font-weight-normal text-center p-5">
+                        We give you free, professional, well - written and targeted CV that showcase your skills and
+                        experience in a concise and precise manner plus free portfolio website that will provide
+                        the most powerful and comprehensive perspective on you.
+                        <br>Why are we doing this?
+                        <br>
+                        <span><strong>We simply want you to achieve high points!!!!!!</strong></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

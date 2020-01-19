@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+{% load static %}
+{% if portfolio %}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Talent Builder">
+        <meta name="description"
+              content="Hi am {{ portfolio.name }}, I've gotten my free portfolio website from Talent Builder.
+              I have achieved my high points. What are you waiting for, come get yours, come let's achieve high points">
+        <title>{{ portfolio.name }}</title>
+        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
+        {#Bootstrap CSS cdn#}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+        {#    My CSS#}
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+        {#Google fonts#}
+        <link href="https://fonts.googleapis.com/css?family=Niconne|Permanent+Marker&display=swap" rel="stylesheet">
+        {#    font awesome#}
+        <script src="{% static 'js/all.js' %}"></script>
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+
+            #contact {
+                background: linear-gradient(rgba(0, 0, 0, .9), rgba(0, 0, 0, .9)), url('{% static 'img/bcg2.jpg' %}') center/cover no-repeat fixed;
+            }
+        </style>
+    </head>
+    <body>
+    {# header and home #}
+    <header>
+        <section
+                style="min-height: 100vh; width: 100%; background: linear-gradient(rgba(0,0,0,.9), rgba(0, 0, 0, .9)), url('{% static 'img/bcg2.jpg' %}') center/cover no-repeat ">
+            {#            navber #}
+            <div class="container-fluid">
+                <nav id="my-dis" class="my-dis navbar navbar-expand-lg">
+                    <a class="navbar-brand color-1" href="#"></a>
+                    <button class="navbar-toggler color-1 my-bg" type="button" data-toggle="collapse"
+                            data-target="#navbarNavAltMarkup"
+                            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon color-1"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav my-nav">
+                            <a class="nav-item nav-link text-white" href="#home">HOME</a>
+                            <a class="nav-item nav-link text-white" href="#about">ABOUT</a>
+                            <a class="nav-item nav-link text-white" href="#contact">CONTACT</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            {#            end of navbar #}
+
+            {#            home #}
+            <div id="home" class="container d-flex align-items-center justify-content-center"
+                 style="min-height: 100vh">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 mb-5">
+                        <h1 class="text-white text-center"
+                            style="font-size: 8rem; font-family: 'Tahoma',sans-serif">{{ portfolio.name }}</h1>
+                        <p class="color-3 text-center"
+                           style="font-family: serif; font-size: 2rem">{{ portfolio.p_headline }}</p>
+                        <div class="d-flex align-items-center justify-content-center m-5">
+                            <a href="{{ portfolio.cv_upload.url }}"
+                               class="text-decoration-none btn btn-outline-warning">Download
+                                Resume</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {#            end of home #}
+        </section>
+    </header>
+    {# end of header and home#}
+
+    {# about #}
+    <section id="about" style="background: linear-gradient(rgba(0,0,0,.9), rgba(0, 0, 0, .9))">
+        <div>
+            <h2 class="text-center p-5 color-1">About Me</h2>
+        </div>
+        <div class="container p-5">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-6 m-3 d-flex align-items-center justify-content-center">
+                    <img class="img-fluid rounded-circle" src="{{ portfolio.picture.url }}"
+                         alt="about {{ portfolio.name }}">
+                </div>
+                <div class="col-6 m-3 color-1 lead">
+                    <p class="text-center">{{ portfolio.about }}</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    {# end of about#}
+
+    {# contact #}
+    <section id="contact">
+        <div class="container pb-5">
+            <div class="row align-items-center justify-content-center p-5">
+                <div class="col-4 p-5">
+                    <h1 class="text-center text-white pt-5">Contact</h1>
+                    <p class="text-center text-white lead pb-5">Hire Me</p>
+                </div>
+                <div class="col-4 p-5">
+                    <h1 class="text-center text-white pt-5">Email</h1>
+                    <p class="text-center text-white lead pb-5">{{ portfolio.email }}</p>
+                </div>
+                <div class="col-4 p-5">
+                    <h1 class="text-center text-white pt-5">Phone</h1>
+                    <p class="text-center text-white lead pb-5">{{ portfolio.phone }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {# end of contact #}
+
+    {# footer #}
+    <section id="footer" class="bg-dark">
+        <div class="container p-5">
+            <div class="row align-items-center">
+                <div class="col d-flex justify-content-between align-items-center">
+                    {% if portfolio.facebook %}
+                        <a href="{{ portfolio.facebook }}"><i class="fab fa-facebook fa-3x color-1"></i></a>
+                    {% endif %}
+                    {% if portfolio.twitter %}
+                        <a href="{{ portfolio.twitter }}"><i class="fab fa-twitter fa-3x color-1"></i></a>
+                    {% endif %}
+                    {% if portfolio.instagram %}
+                        <a href="{{ portfolio.instagram }}"><i class="fab fa-instagram fa-3x color-1"></i></a>
+                    {% endif %}
+                    {% if portfolio.linkedin %}
+                        <a href="{{ portfolio.linkedin }}"><i class="fab fa-linkedin fa-3x color-1"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row align-items-center pt-5">
+                <div class="col color-1 d-flex justify-content-center align-items-center font-weight-bold">
+                    Copyright &copy; {% now 'Y' %} Talent Builder, All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </section>
+    {# end of footer #}
+
+
+    {#Bootstrap javascript#}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    </body>
+    </html>
+{% endif %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} | You Have Achieved High Points {% endblock %}
+{% block content %}
+    <section id="appreciation" class="my-bg-2">
+        <div class="container p-5">
+            <h1 class="color-2 text-center pt-5">YOU HAVE ACHIEVED HIGH POINTS!!!!!!!</h1>
+            <div class="row p-5 align-items-center justify-content-center">
+                {% include 'partials/_alert.html' %}
+                <div class="col-lg-6  my-bg-1 p-5">
+                    <p class="lead color-1 p-5">
+                        As promised we will be sending the goodies shortly to your inbox.
+                        If you don't hear from us or receive your job winning CV within three to ten
+                        working days, please let us know! <br>
+                        Contact Us on
+                        <a href="tel:+233543833501" class="color-1 text-decoration-none">
+                            +233 543833501
+                        </a> or
+                        <a href="mailto:talentbuilderghana@outlook.com" class="color-1 text-decoration-none">
+                            talentbuilderghana@outlook.com
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

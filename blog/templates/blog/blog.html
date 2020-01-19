@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+{% load humanize %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Daniel Afriyie email:afriyiedaniel1@outlook.com">
+    <meta name="description" content="{{ blog.meta_content }}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
+    {#Bootstrap CSS cdn#}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {#    My CSS#}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {#Google fonts#}
+    <link href="https://fonts.googleapis.com/css?family=Niconne|Permanent+Marker&display=swap" rel="stylesheet">
+    {#    font awesome#}
+    <script src="{% static 'js/all.js' %}"></script>
+    <title>{% block title %}{{ blog.title }}{% endblock %}</title>
+</head>
+<body>
+{#Top bar#}
+{% include 'partials/_topbar.html' %}
+{#end Top bar#}
+
+{#navbar#}
+{% include 'partials/_navbar.html' %}
+{#end of navbar#}
+
+{#Main Content#}
+<section id="blogs">
+    <div class="container-fluid my-bg">
+        <div class="row">
+            <div class="col">
+                <div class="container-fluid">
+                    <div class="row align-items-center justify-content-center pt-5">
+                        <div class="col-8-lg pt-5">
+                            <img class="img-fluid" src="{{ blog.image.url }}" alt="{{ blog.title }}">
+                        </div>
+                        <div class="col-4-lg pt-5">
+                            <h1 style="font-family: 'Times New Roman',serif; font-weight: bold; font-size: 3rem"
+                                class="color-2 pt-5 px-5">
+                                {{ blog.title }}</h1>
+                            <p class="color-2 px-5" style="font-family: Arial,serif; font-size: 1.5rem">
+                                {{ blog.date | date }} by: {{ blog.author }}
+                            </p>
+                        </div>
+                        <div class="col-12 py-5">
+                            <hr>
+                            <div class="col pt-5">
+                                <div class="container">
+                                    <div id="blogData" class="row px-5 color-2">
+                                        {{ blog.body | safe }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{#end of Main Content#}
+
+{#Footer#}
+{% include 'partials/_footer.html' %}
+{#end of Footer#}
+
+{#Bootstrap javascript#}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

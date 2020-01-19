@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Contact Us {% endblock %}
+
+{% block content %}
+    <section class="my-bg-2">
+        <!--<div class="container">
+            <div class="row">
+                <div class="col">
+                    {#                    title#}
+                    <h1 class="color-2 font-italic text-center py-5" style="font-family: Arial, serif">Feel free to
+                        reach!</h1>
+                    {#                    end of title#}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {#                    contact image#}
+                    <img class="img-fluid" src="{% static 'img/contact.jpg' %}" alt="Contact Us">
+                    {#                    end of contact image#}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 p-5 d-flex align-self-center">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div>
+                            <label for="name" class="color-2"
+                                   style="font-family: 'Arial', serif; font-size: 1.3rem">
+                                Name</label><br>
+                            <input id="name" type="text" name="name" class="message" required>
+                        </div>
+                        <div>
+                            <label for="email" class="color-2"
+                                   style="font-family: 'Arial', serif; font-size: 1.3rem">
+                                Email</label><br>
+                            <input id="email" type="email" name="email" class="message" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="color-2"
+                                   style="font-family: 'Arial', serif; font-size: 1.3rem">
+                                Phone</label><br>
+                            <input id="phone" type="tel" name="phone" class="message" required>
+                        </div>
+                        <div>
+                            <label for="message" class="color-2"
+                                   style="font-family: 'Arial', serif; font-size: 1.3rem">
+                                Message</label><br>
+                            <textarea id="message" type="text" name="message" class="message-body" required></textarea>
+                        </div>
+                        <input type="submit" value="Submit" class="btn btn-outline-success btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>-->
+        <div class="container-fluid">
+            <div class="row align-items-center justify-content-center py-5"
+                 style="background: linear-gradient(rgba(0,0,50,0.9), rgba(0, 0, 50, .9)),
+                         url('{% static 'img/bcg2.jpg' %}') center/cover no-repeat; min-height: 100vh">
+                <div class="col-12">
+                    <h3 class="color-1 display-4 text-center">SEND US AN EMAIL</h3>
+                    <h3 class="text-center py-5">
+                        <a href="mailto:talentbuilderghana@outlook.com" class="color-1 text-decoration-none">
+                            <i class="fas fa-envelope fa-10x text-center"></i>
+                        </a>
+                    </h3>
+
+                </div>
+                <div class="col-12">
+                    <h3 class="display-4 color-1 text-center">LET'S TALK</h3>
+                    <h3 class="text-center py-5">
+                        <a href="tel:+233543833501" class="color-1 text-decoration-none">
+                            <i class="fa fa-phone fa-10x"></i>
+                        </a>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

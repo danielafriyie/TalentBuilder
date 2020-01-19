@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Free professional job winning CV plus free portfolio website {% endblock %}
+
+{% block content %}
+    <header id=""
+            style="background: linear-gradient(rgba(0,0,50,0.9), rgba(0, 0, 50, .9)),
+                    url('{% static 'img/bcg3.jpeg' %}') center/cover no-repeat">
+        <div class="container">
+            <div class="row align-items-center height">
+                <div class="col">
+                    <h2 class="text-center color-1 display-3 font-weight-normal">Double your interview
+                        chances!</h2>
+                    <p class="color-1 text-center f-1 m-auto">Our free CV writing package will land you more interviews
+                        and our portfolio website will get you hired faster! <br>
+                        <a href="{% url 'upload_cv' %}" class="btn my-bg-1 text-center color-1 nice-border">Upload Your
+                            CV</a>
+                        <a href="{% url 'portfolio' %}" class="btn my-bg-1 text-center color-1 nice-border">Get Your Portfolio Website</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="my-bg-2 pt-5">
+        <div class="container p-5">
+            <div class="row p-5">
+                <div class="col py-3 my-bg-1">
+                    {#                    title#}
+                    <div>
+                        <h1 class="color-1 text-center pt-5">Free CV Writing</h1>
+                        <hr>
+                    </div>
+                    {#                    end of title#}
+                    <div>
+                        <p class="color-1 text-center p-5 lead">
+                            A professional, well-written and targeted CV is crucial for successfully landing your next
+                            role. Opinions and ideas vary enormously about the ideal content of a CV. Ultimately, a CV
+                            must showcase your skills and experience in a way that encourages the recruiter to invite
+                            you for an interview. Our free CV Writing Service provides a personal, and approachable way to
+                            have a great CV of which to be proud.
+                        </p>
+                        <div class="d-flex align-items-center justify-content-center pb-5">
+                            <a href="{% url 'upload_cv' %}"
+                               class="text-decoration-none btn btn-outline-warning">
+                                Upload your CV
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-5">
+                <div class="col py-3 my-bg-1">
+                    {#                    title#}
+                    <div>
+                        <h1 class="color-1 text-center pt-5">Free and Responsive Portfolio Website</h1>
+                        <hr>
+                    </div>
+                    {#                    end of title#}
+                    <div>
+                        <p class="color-1 text-center p-5 lead">
+                            A portfolio website is an essential tool to getting more business and building your
+                            professional brand. In today’s digital world, a portfolio is arguably more important than a
+                            resume, no matter what industry you work in. Whether you are a journalist, a recent graduate
+                            looking for a job, or even an accountant, your portfolio will provide the most powerful and
+                            comprehensive perspective on you. Our free portfolio website gives the client a sense of who you
+                            are, what you can do and whether you are the person they should hire to execute their
+                            project and trust me, they will know you are the perfect match.
+                        </p>
+                        <div class="d-flex align-items-center justify-content-center pb-5">
+                            <a href="{% url 'portfolio' %}"
+                               class="text-decoration-none btn btn-outline-warning">
+                                Get Your Portfolio Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="my-bg-2">
+        <div class="container">
+            <div class="row">
+
+                <div class="col">
+                    {#                title#}
+                    <h1 class="text-center color-2 mt-5">How it works</h1>
+                    <hr>
+                    {#                end of title#}
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-center color-2 f-1">
+                                <i class="fa fa-cloud-upload-alt color-2 fa-7x text-center"></i><br>
+                                Upload your CV
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p class="text-center color-2 f-1">
+                                <i class="fab fa-black-tie color-2 fa-7x text-center"></i><br>
+                                Get your job winning CV
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row my-5">
+                        <div class="col">
+                            <p class="text-center color-2 f-1">
+                                <i class="fa fa-tasks color-2 fa-7x text-center"></i><br>
+                                Fill a portfolio form
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p class="text-center color-2 f-1">
+                                <i class="fa fa-globe color-2 fa-7x text-center"></i><br>
+                                Get your own portfolio website
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

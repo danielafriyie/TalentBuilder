@@ -1,0 +1,49 @@
+<style>
+    footer {
+        width: 100%;
+        position: absolute;
+    {#bottom: 0;#} background: rgba(226, 226, 226, 1) !important;;
+    }
+
+    .footer-color {
+        color: #5d4954;
+    }
+
+</style>
+<section class="container-fluid my-bg-1 p-5">
+    <div class="container py-3">
+        <div class="row align-items-center p-5">
+            <div class="col p-3 p-5">
+                <h1 class="color-1 text-center">Ready to achieve high points?<br><br>
+                    <a href="{% url 'upload_cv' %}" class="btn btn-outline-warning nice-border mt-3">Upload your CV</a>
+                    <a href="{% url 'portfolio' %}" class="btn btn-outline-warning nice-border mt-3">Get Your Portfolio
+                        Website</a>
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <div class="container my-3 py-1">
+        <div class="row align-items-center">
+            <div class="col d-flex justify-content-between align-items-center">
+                <a href="https://web.facebook.com/talentbuilderghana/" target="_blank"><i
+                        class="fab fa-facebook fa-3x footer-color"></i></a>
+                <div><i class="fas fa-phone fa-2x footer-color"></i> (+233) 543833501 / (+233) 502155025</div>
+                <a href="mailto:talentbuilderghana@outlook.com"><i class="fas fa-envelope fa-3x footer-color"></i></a>
+            </div>
+        </div>
+        <div class="row align-items-center mt-3">
+            <div class=" col footer-color d-flex justify-content-center align-items-center font-weight-bold">
+                <a class="text-decoration-none mx-3 footer-color" href="{% url 'terms' %}">Terms and Conditions</a>
+                <a class="text-decoration-none mx-3 footer-color" href="{% url 'privacy' %}">Privacy Policy</a>
+{#                <a class="text-decoration-none mx-3 footer-color" href="{% url 'banner_ads' %}">Banner Ads Rates</a>#}
+            </div>
+        </div>
+        <div class="row align-items-center mt-3">
+            <div class=" col footer-color d-flex justify-content-center align-items-center font-weight-bold">
+                Copyright &copy; {% now 'Y' %} Talent Builder, All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %} | Get Your Own Portfolio Website {% endblock %}
+
+{% block content %}
+    <section id="portfolio">
+        <div class="container p-5">
+            <div class=" p-5">
+                <h1 class="color-2 text-center">GET YOUR OWN PORTFOLIO WEBSITE!!!</h1>
+                <hr>
+            </div>
+            <div class="row py-5 justify-content-center align-items-center">
+                <div class="col-lg-8 my-bg-1 p-5">
+                    {% include 'partials/_alert.html' %}
+                    <form action="{% url 'portfolio' %}" enctype="multipart/form-data" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-md" placeholder="enter your name"
+                                   name="name" id="name" maxlength="256" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control form-control-md" placeholder="enter your email"
+                                   name="email" id="email" maxlength="256" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control form-control-md" placeholder="enter your phone number"
+                                   name="phone" id="phone" maxlength="20" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-md"
+                                   placeholder="enter your professional headline eg: Accountant | Engineer | Doctor etc."
+                                   name="p_headline" id="p_headline" maxlength="256" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control form-control-md" style="height: 10rem;"
+                                      placeholder="give a description about yourself"
+                                      name="about" id="about" maxlength="500" required></textarea>
+                        </div>
+                        <div class="input-group my-3">
+                            <input type="file" class="form-control" name="cv_upload" required>
+                            <!--                        append-->
+                            <div class="input-group-append">
+                                <button type="button" class="btn my-bg-2">Upload CV</button>
+                            </div>
+                        </div>
+                        <div class="input-group my-3">
+                            <input type="file" class="form-control" name="picture" required>
+                            <!--                        append-->
+                            <div class="input-group-append">
+                                <button type="button" class="btn my-bg-2">Upload Your Picture</button>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="color-2 text-center btn my-bg-2" style="width: 100%;">Social Links</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-md"
+                                   placeholder="enter your facebook link eg: www.facebook.com/johndoe"
+                                   name="facebook" id="facebook" maxlength="256">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-md"
+                                   placeholder="enter your twitter link eg: www.twitter.com/johndoe"
+                                   name="twitter" id="twitter" maxlength="256">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-md"
+                                   placeholder="enter your instagram link eg: www.instagram.com/johndoe"
+                                   name="instagram" id="instagram" maxlength="256">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-md"
+                                   placeholder="enter your linkedin link eg: www.linkedin.com/johndoe"
+                                   name="linkedin" id="linkedin" maxlength="256">
+                        </div>
+                        <div class="input-group mt-3">
+                            <select name="theme" class="form-control" required>
+                                <option value=""></option>
+                                <option name="blue" value="blue theme">Blue Theme</option>
+                                <option name="green" value="green theme">Green Theme</option>
+                                <option name="black" value="black theme">Black Theme</option>
+                                <option name="nano" value="nano theme">Nano Theme</option>
+                            </select>
+                            <div class="input-group-append">
+                                <button type="button" class="btn my-bg-2 color-2">Choose Theme</button>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <input type="checkbox" name="agree_to_terms" value="true" required>
+                            <span class="color-1">I agree to
+                                <a class="text-warning" href="{% url 'terms' %}">terms and conditions</a>
+                                and
+                                <a class="text-warning" href="{% url 'privacy' %}">privacy policy</a>
+                            </span>
+                        </div>
+                        <input type="submit" value="Submit Form" class="btn btn-block btn-outline-warning mt-3">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
