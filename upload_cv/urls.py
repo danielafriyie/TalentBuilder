@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.UploadCVView.as_view(), name='upload_cv'),
-    path('appreciation/', views.appreciation, name='CVappreciation')
+    path('', views.upload_cv, name='upload_cv'),
+    path('appreciation/', views.appreciation, name='cv_appreciation')
 ]

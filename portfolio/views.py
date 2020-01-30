@@ -1,16 +1,25 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib import messages as msg
-from .models import Portfolio
+from . import models
 
 
 def portfolio(request):
-    # meta description content
-    content = 'Free Portfolio Website'
+    top_ad = models.TopAd.objects.filter(status=True).all().first()
+    bottom_ad = models.BottomAd.objects.all().filter(status=True)
+    left_ad = models.LeftAd.objects.all().filter(status=True).first()
+    right_ad = models.RightAd.objects.all().filter(status=True).first()
+    context = {
+        'topAd': top_ad,
+        'bottomAd': bottom_ad,
+        'leftAd': left_ad,
+        'rightAd': right_ad
+    }
 
     # check for post request
     if request.method == 'POST':
         # get form data
         name = request.POST['name']
+        slug_name = name.lower().replace(' ', '-')
         email = request.POST['email']
         phone = request.POST['phone']
         p_headline = request.POST['p_headline']
@@ -23,33 +32,45 @@ def portfolio(request):
         linkedin = request.POST['linkedin']
         theme = request.POST['theme']
         agree_to_terms = request.POST['agree_to_terms']
+        banner_ad = models.TopAd.objects.all().get(id=1)
 
         # check for existing email
-        if Portfolio.objects.filter(email=email).exists():
+        if models.Portfolio.objects.filter(email=email).exists():
             msg.error(request, 'Email already exists')
             return redirect('portfolio')
         else:
             # insert data into database
-            data = Portfolio.objects.create(
-                name=name, email=email, phone=phone, p_headline=p_headline, about=about,
+            data = models.Portfolio.objects.create(
+                name=name, slug_name=slug_name, email=email, phone=phone, p_headline=p_headline, about=about,
                 picture=picture, cv_upload=cv_upload, facebook=facebook, twitter=twitter,
-                instagram=instagram, linkedin=linkedin, theme=theme, agree_to_terms=agree_to_terms
+                instagram=instagram, linkedin=linkedin, theme=theme, agree_to_terms=agree_to_terms,
+                banner_ad=banner_ad
             )
             data.save()
             msg.success(request, 'Form submitted successfully')
             return redirect('portfolio_appreciation')
 
-    return render(request, 'portfolio/portfolio.html', {'content': content})
+    return render(request, 'portfolio/portfolio.html', context)
 
 
 def appreciation(request):
-    return render(request, 'portfolio/appreciation.html')
-
-
-def portfolio_theme(request, portfolio_id, portfolio_name):
-    p_id = get_object_or_404(Portfolio, pk=portfolio_id)
+    top_ad = models.TopAd.objects.filter(status=True).all().first()
+    bottom_ad = models.BottomAd.objects.all().filter(status=True)
+    left_ad = models.LeftAd.objects.all().filter(status=True).first()
+    right_ad = models.RightAd.objects.all().filter(status=True).first()
     context = {
-        'portfolio': p_id
+        'topAd': top_ad,
+        'bottomAd': bottom_ad,
+        'leftAd': left_ad,
+        'rightAd': right_ad
+    }
+    return render(request, 'portfolio/appreciation.html', context)
+
+
+def portfolio_theme(request, portfolio_id, slug_name):
+    p_id = models.Portfolio.objects.get(id=portfolio_id, slug_name=slug_name)
+    context = {
+        'portfolio': p_id,
     }
 
     # theme check

@@ -3,11 +3,32 @@
 {% block title %} | You Have Achieved High Points {% endblock %}
 {% block content %}
     <section id="appreciation" class="my-bg-2">
-        <div class="container p-5">
+        {#            top ads#}
+        <div class="container-fluid">
+            <div class="row pt-5">
+                <div class="col-12">
+                    <a target="_blank" href="{{ topAd.link }}">
+                        <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                             alt="{{ topAd.title }}">
+                    </a>
+                </div>
+            </div>
+        </div>
+        {#            end of top ads#}
+
+        <div class="container-fluid p-5">
             <h1 class="color-2 text-center pt-5">YOU HAVE ACHIEVED HIGH POINTS!!!!!!!</h1>
+            <hr>
             <div class="row p-5 align-items-center justify-content-center">
-                {% include 'partials/_alert.html' %}
-                <div class="col-lg-6  my-bg-1 p-5">
+                {#                left ad#}
+                <div id="leftAd" class="col-lg-4 pt-5">
+                    <a target="_blank" href="{{ leftAd.link }}">
+                        <img class="img-fluid" src="{{ leftAd.image.url }}" alt="{{ leftAd.title }}">
+                    </a>
+                </div>
+                {#                end of left ad#}
+
+                <div class="col-xl-4  my-bg-1 p-5">
                     <p class="lead color-1 p-5">
                         As promised we will be sending the goodies shortly to your inbox.
                         If you don't hear from us or receive your job winning CV within three to ten
@@ -21,7 +42,30 @@
                         </a>
                     </p>
                 </div>
+
+                {#                right ad#}
+                <div id="rightAd" class="col-lg-4 pt-5">
+                    <a target="_blank" href="{{ rightAd.link }}">
+                        <img class="img-fluid" src="{{ rightAd.image.url }}" alt="{{ rightAd.title }}">
+                    </a>
+                </div>
+                {#                end of right ad#}
             </div>
         </div>
+
+        {#            bottom ads#}
+        <div class="container-fluid">
+            <div class="row p-5 mb-5">
+                {% for data in bottomAd %}
+                    <div class="col-3">
+                        <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
+                                                                       alt="{{ data.title }}"></a><br>
+                        <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                           class="color-2">{{ data.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {#            end of bottom ads#}
     </section>
 {% endblock %}

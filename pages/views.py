@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from . import models
 
 
@@ -24,8 +23,6 @@ def privacy(request):
 
 
 def banner_ads(request):
-    rate_file = models.BannerAds.objects.order_by('-id').first().rate.url
-    response = HttpResponse(rate_file, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=BannerRates'
+    rate_file = models.BannerAds.objects.all().order_by('-id').first().rate.url
 
-    return response
+    return redirect(rate_file)

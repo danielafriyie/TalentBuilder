@@ -83,12 +83,12 @@
             {% endif %}
                 href="{% url 'contact' %}">Contact</a>
 
-            <a {% if 'blog' in request.path %}
-                class="nav-item nav-link my-color active-nav"
-            {% else %}
-                class="nav-item nav-link my-color"
-            {% endif %}
-                href="{% url 'blogs' %}">Blog</a>
+{#            <a {% if 'blog' in request.path %}#}
+{#                class="nav-item nav-link my-color active-nav"#}
+{#            {% else %}#}
+{#                class="nav-item nav-link my-color"#}
+{#            {% endif %}#}
+{#                href="{% url 'blogs' %}">Blog</a>#}
 
             <a {% if 'about' in request.path %}
                 class="nav-item nav-link my-color active-nav"

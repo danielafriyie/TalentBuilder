@@ -1,28 +1,41 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block title %} | Get Your Job Winning CV {% endblock %}
 {% block content %}
 
     <section class="my-bg-2">
-        <div class="container my-bg-2">
-            {#            ads#}
-            <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4"></div>
-                <div class="col-4"></div>
+        {#            top ads#}
+        <div class="container-fluid">
+            <div class="row pt-5">
+                <div class="col-12">
+                    <a target="_blank" href="{{ topAd.link }}">
+                        <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                             alt="{{ topAd.title }}">
+                    </a>
+                </div>
             </div>
-            {#            end of ads#}
+        </div>
+        {#            end of top ads#}
 
+        <div class="container-fluid my-bg-2">
             <div class="row pt-5">
                 <div class="col pt-5">
                     <h1 class="color-2 text-center text-uppercase">Get your Job Winning CV</h1>
                     <hr>
                 </div>
             </div>
+            <div class="row align-items-center justify-content-center">
+                {#                left ad#}
+                <div id="leftAd" class="col-lg-3">
+                    <a target="_blank" href="{{ leftAd.link }}">
+                        <img class="img-fluid" src="{{ leftAd.image.url }}" alt="{{ leftAd.title }}">
+                    </a>
+                </div>
+                {#                end of left ad#}
 
-            <div class="row align-items-center justify-content-center pb-5">
-                <div class="col-lg-6">
-                    <div class="card card-body my-bg-1 my-5 p-5">
+                <div class="col-xl-5 col-md-8">
+                    <div class="my-bg-1 my-5 p-5">
                         {% include 'partials/_alert.html' %}
                         <form action="{% url 'upload_cv' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
@@ -57,7 +70,7 @@
                             </div>
                             <div>
                                 <input type="checkbox" name="agree_to_terms" value="true" required>
-                                    <span class="color-1">I agree to
+                                <span class="color-1">I agree to
                                         <a class="text-warning" href="{% url 'terms' %}">terms and conditions</a>
                                         and
                                         <a class="text-warning" href="{% url 'privacy' %}">privacy policy</a>
@@ -68,18 +81,32 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
-            </div>
 
-            {#            ads#}
-            <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4"></div>
-                <div class="col-4"></div>
+                {#                right ad#}
+                <div id="rightAd" class="col-lg-3">
+                    <a target="_blank" href="{{ rightAd.link }}">
+                        <img class="img-fluid" src="{{ rightAd.image.url }}" alt="{{ rightAd.title }}">
+                    </a>
+                </div>
+                {#                end of right ad#}
             </div>
-            {#            end of ads#}
         </div>
+
+        {#            bottom ads#}
+        <div class="container-fluid">
+            <div class="row p-5 mb-5">
+                {% for data in bottomAd %}
+                    <div class="col-3">
+                        <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
+                                                                       alt="{{ data.title }}"></a><br>
+                        <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                           class="color-2">{{ data.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {#            end of bottom ads#}
     </section>
 
 {% endblock %}

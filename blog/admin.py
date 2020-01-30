@@ -12,3 +12,15 @@ class BlogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Blog, BlogAdmin)
+
+
+class TopAdAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'title', 'date', 'expiry', 'status')
+    list_display_links = ('id', 'name', 'title')
+    list_editable = ('expiry', 'status')
+    list_filter = ('date', 'status')
+    search_fields = ('id', 'name', 'title')
+    list_per_page = 25
+
+
+admin.site.register(models.TopAd, TopAdAdmin)

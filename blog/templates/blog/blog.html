@@ -57,8 +57,33 @@
                         </div>
                     </div>
                 </div>
+                {#            all blogs#}
+                <div class="container-fluid">
+                    <div class="container-fluid">
+                        <div id="blogData" class="row px-5">
+                            {% for data in all_blogs %}
+                                <div class="col-lg-4 col-md-12 my-5">
+                                    <a href="{% url 'detail_blog' data.id data.date.year data.date.month data.date.day data.slug_field %}">
+                                        <img id="blogImage" src="{{ data.image.url }}" class="img-fluid"
+                                             alt="{{ data.title }}">
+                                    </a>
+                                    <a href="{% url 'detail_blog' data.id data.date.year data.date.month data.date.day data.slug_field %}">
+                                        <h2 class="my-3 color-2">{{ data.title }}</h2>
+                                    </a>
+                                    <a href="{% url 'detail_blog' data.id data.date.year data.date.month data.date.day data.slug_field %}"
+                                       class="text-decoration-none">
+                                        <p class="color-2">
+                                            {{ data.summary }}
+                                        </p>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        {#            end of all blogs#}
     </div>
 </section>
 {#end of Main Content#}

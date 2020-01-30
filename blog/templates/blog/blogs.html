@@ -29,8 +29,21 @@
 {#end of navbar#}
 
 {#Main Content#}
-<section id="blogs">
-    <div class="container-fluid my-bg">
+<section id="blogs" class="my-bg">
+    {#            top ads#}
+    <div class="container-fluid">
+        <div class="row pt-5">
+            <div class="col-12">
+                <a target="_blank" href="{{ topAd.link }}">
+                    <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                         alt="{{ topAd.title }}">
+                </a>
+            </div>
+        </div>
+    </div>
+    {#            end of top ads#}
+
+    <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <div class="container-fluid">
@@ -50,12 +63,13 @@
                                             <div class="col-lg-4 col-md-12 my-5">
                                                 <a href="{% url 'detail_blog' data.id data.date.year data.date.month data.date.day data.slug_field %}">
                                                     <img id="blogImage" src="{{ data.image.url }}" class="img-fluid"
-                                                         alt="blog image">
+                                                         alt="{{ data.title }}">
                                                 </a>
                                                 <a href="{% url 'detail_blog' data.id data.date.year data.date.month data.date.day data.slug_field %}">
                                                     <h2 class="my-3 color-2">{{ data.title }}</h2>
                                                 </a>
-                                                <a href="{% url 'detail_blog' data.id data.date.year data.date.month data.date.day data.slug_field %}" class="text-decoration-none">
+                                                <a href="{% url 'detail_blog' data.id data.date.year data.date.month data.date.day data.slug_field %}"
+                                                   class="text-decoration-none">
                                                     <p class="color-2">
                                                         {{ data.summary }}
                                                     </p>
