@@ -1,3 +1,14 @@
+#burger {
+    cursor: pointer !important;
+}
+
+#burger div {
+    width: 30px !important;
+    height: 2px !important;
+    background: #d6d6d6;
+    margin: 5px !important;
+}
+
 .height {
     min-height: 90vh;
 }

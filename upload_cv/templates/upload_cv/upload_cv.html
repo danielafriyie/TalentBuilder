@@ -40,36 +40,29 @@
                         <form action="{% url 'upload_cv' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group mt-3">
-                                <input id="name" type="text" class="form-control form-control-lg"
-                                       placeholder="enter your name" name="name" maxlength="255" required>
+                                {{ upload_cv_form.name }}
                             </div>
                             <div class="form-group mt-3">
-                                <input id="email" type="email" class="form-control form-control-lg"
-                                       placeholder="enter your email" name="email" maxlength="255" required>
+                                {{ upload_cv_form.email }}
                             </div>
                             <div class="form-group mt-3">
-                                <input id="phone" type="tel" class="form-control form-control-lg"
-                                       placeholder="enter your phone number" name="phone" maxlength="20" required>
+                                {{ upload_cv_form.phone }}
                             </div>
                             <div class="input-group mt-3">
-                                <select name="cv_format" class="form-control form-control-lg" required>
-                                    <option value=""></option>
-                                    <option name="modern_cv" value="modern cv">Modern CV</option>
-                                    <option name="traditional_cv" value="traditional cv">Traditional CV</option>
-                                </select>
+                                {{ upload_cv_form.cv_format }}
                                 <div class="input-group-append">
                                     <button type="button" class="btn my-bg-2 color-2">CV Format / Style</button>
                                 </div>
                             </div>
                             <div class="input-group my-3">
-                                <input type="file" class="form-control form-control-lg" name="cv_upload" required>
+                                {{ upload_cv_form.cv_upload }}
                                 <!--                        append-->
                                 <div class="input-group-append">
                                     <button type="button" class="btn my-bg-2 color-2">Upload CV</button>
                                 </div>
                             </div>
                             <div>
-                                <input type="checkbox" name="agree_to_terms" value="true" required>
+                                {{ upload_cv_form.agree_to_terms }}
                                 <span class="color-1">I agree to
                                         <a class="text-warning" href="{% url 'terms' %}">terms and conditions</a>
                                         and

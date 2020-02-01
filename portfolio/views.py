@@ -32,7 +32,7 @@ def portfolio(request):
         linkedin = request.POST['linkedin']
         theme = request.POST['theme']
         agree_to_terms = request.POST['agree_to_terms']
-        banner_ad = models.TopAd.objects.all().get(id=1)
+        banner_ad = models.PortfolioAd.objects.all().get(id=1)
 
         # check for existing email
         if models.Portfolio.objects.filter(email=email).exists():

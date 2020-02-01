@@ -8,7 +8,7 @@ class UploadCV(models.Model):
     phone = models.CharField(max_length=20)
     cv_format = models.CharField(max_length=25, blank=False)
     cv_upload = models.FileField(upload_to='CV/%Y/%m/%d/', blank=False)
-    agree_to_terms = models.CharField(max_length=10, default="false")
+    agree_to_terms = models.BooleanField()
     revised_cv = models.FileField(upload_to='RevisedCV/%Y/%m/%d/', blank=True)
     date = models.DateTimeField(default=now())
 

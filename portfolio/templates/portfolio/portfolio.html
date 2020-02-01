@@ -9,7 +9,7 @@
             <div class="row pt-5">
                 <div class="col-12">
                     <a target="_blank" href="{{ topAd.link }}">
-                        <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                        <img id="addImage" class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
                              alt="{{ topAd.title }}">
                     </a>
                 </div>
@@ -135,7 +135,8 @@
             <div class="row p-5 mb-5">
                 {% for data in bottomAd %}
                     <div class="col-3">
-                        <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
+                        <a target="_blank" href="{{ data.link }}"><img id="addImage" class="img-fluid"
+                                                                       src="{{ data.image.url }}"
                                                                        alt="{{ data.title }}"></a><br>
                         <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
                            class="color-2">{{ data.title }}</a>

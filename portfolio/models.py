@@ -54,6 +54,19 @@ class LeftAd(models.Model):
         return self.name
 
 
+class PortfolioAd(models.Model):
+    name = models.CharField(max_length=255)
+    link = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to='BannerAds/Portfolio/PortfolioAd/%Y/%m/%d/', blank=True)
+    title = models.CharField(max_length=255)
+    date = models.DateTimeField(default=now())
+    expiry = models.DateTimeField()
+    status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+
 class Portfolio(models.Model):
     name = models.CharField(max_length=255)
     slug_name = models.CharField(max_length=255)
@@ -76,7 +89,7 @@ class Portfolio(models.Model):
     # Portfolio link
     portfolio_link = models.CharField(max_length=255, blank=True)
     # Banner Ads
-    banner_ad = models.ForeignKey(TopAd, on_delete=models.DO_NOTHING, blank=True)
+    banner_ad = models.ForeignKey(PortfolioAd, on_delete=models.DO_NOTHING, blank=True)
 
     def __str__(self):
         return self.name
