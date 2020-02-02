@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} | Get Your Job Winning CV {% endblock %}
+{% block content %}
+    <section>
+        <div class="container py-5">
+            <div class="row py-5 align-items-center align-content-center justify-content-center">
+                <div class="col-lg-6 my-bg-1 p-5" style="border-radius: 20px;">
+                    {% include 'partials/_alert.html' %}
+                    <form action="{% url 'search-cv' %}">
+                        {#                        {% csrf_token %}#}
+                        <div class="form-group mt-3">
+                            <input type="hidden" name="sent" value="sent" maxlength="4">
+                            <input type="email" name="email" class="form-control form-control-lg"
+                                   placeholder="enter your email"
+                                   maxlength="100" required>
+                        </div>
+                        <div class="form-group mt-3 pt-2">
+                            <input type="submit" value="SEARCH" class="btn btn-block btn-outline-warning">
+                        </div>
+                    </form>
+                    <div class="p-5"
+                         {% if not sent %}
+                            style="display: none"
+                         {% endif %}
+                    >
+                        {% for data in query_set_list %}
+                            {% if data.revised_cv %}
+                                <p class="text-center color-1 lead">Congrats {{ data.name }} you have achieved high points!</p>
+                                <a style="width: 100%;" class="btn btn-outline-warning" href="{{ data.revised_cv.url }}">
+                                    Click to Download CV
+                                </a>
+                            {% else %}
+                                <p class="text-center lead color-1">
+                                    Welcome {{ data.name }}, our staff are currently working on your job winning
+                                    CV to help you achieve high points, we will notify you when it is ready.
+                                </p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

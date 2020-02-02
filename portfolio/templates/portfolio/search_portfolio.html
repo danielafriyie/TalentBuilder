@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} | Get Your Own Portfolio Website {% endblock %}
+{% block content %}
+    <section>
+        <div class="container py-5">
+            <div class="row py-5 align-items-center align-content-center justify-content-center">
+                <div class="col-lg-6 my-bg-1 p-5" style="border-radius: 20px;">
+                    {% include 'partials/_alert.html' %}
+                    <form action="{% url 'search_portfolio' %}">
+                        {#                        {% csrf_token %}#}
+                        <div class="form-group mt-3">
+                            <input type="hidden" name="sent" value="sent" maxlength="4">
+                            <input type="email" name="email" class="form-control form-control-lg"
+                                   placeholder="enter your email"
+                                   maxlength="100" required>
+                        </div>
+                        <div class="form-group mt-3 pt-2">
+                            <input type="submit" value="SEARCH" class="btn btn-block btn-outline-warning">
+                        </div>
+                    </form>
+                    <div class="p-5"
+                            {% if not sent %}
+                         style="display: none"
+                            {% endif %}
+                    >
+                        {% for data in query_set_list %}
+                            {% if data.slug_name %}
+                                <p class="text-center color-1 lead">Congrats {{ data.name }} you have achieved high
+                                    points! Your portfolio website is ready, click below to open your portfolio website</p>
+                                <a target="_blank" style="width: 100%;" class="btn btn-outline-warning"
+                                   href="{% url 'theme' data.id data.slug_name %}">
+                                    Preview Portfolio
+                                </a>
+                                <p class="text-center color-1 lead pt-5">
+                                    <input style="width: 100%" type="text" value="{{ portfolio_link }}{{ data.id }}/{{ data.slug_name }}">
+                                </p>
+                            {% else %}
+                                <p class="text-center lead color-1">
+                                    Welcome {{ data.name }}, our staff are currently working on your job winning
+                                    portfolio website to help you achieve high points, we will notify you when it is ready.
+                                </p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

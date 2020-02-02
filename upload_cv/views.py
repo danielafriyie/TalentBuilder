@@ -75,50 +75,35 @@ class UploadCVView(View):
         return render(request, 'upload_cv/upload_cv.html', context)
 
     def post(self, request):
-        upload_cv_form = forms.UploadCVForm(request.POST)
-        name = upload_cv_form['name']
-        email = upload_cv_form['email']
-        phone = upload_cv_form['phone']
-        cv_format = upload_cv_form['cv_format']
-        cv_upload = upload_cv_form['cv_upload']
-        agree_to_terms = upload_cv_form['agree_to_terms']
-        print(name)
-        print(email)
-        print(phone)
-        print(cv_format)
-        print(cv_upload)
-        print(agree_to_terms)
+        upload_cv_form = forms.UploadCVForm(request.POST, request.FILES)
 
         # check if form is valid
-        # if upload_cv_form.is_valid():
-        #     print('valid')
-        #
-        #     # get form data
-        #     name = upload_cv_form.cleaned_data['name']
-        #     email = upload_cv_form.cleaned_data['email']
-        #     phone = upload_cv_form.cleaned_data['phone']
-        #     cv_format = upload_cv_form.cleaned_data['cv_format']
-        #     cv_upload = upload_cv_form.cleaned_data['cv_upload'].file
-        #     agree_to_terms = upload_cv_form.cleaned_data['agree_to_terms']
-        #
-        #     # check if email exists
-        #     if models.UploadCV.objects.filter(email=email).exists():
-        #         msg.error(request, 'Email already exists!')
-        #         return redirect('upload_cv')
-        #     else:
-        #         # insert data to database
-        #         data = models.UploadCV.objects.create(
-        #             name=name, email=email, phone=phone, cv_format=cv_format, cv_upload=cv_upload,
-        #             agree_to_terms=agree_to_terms
-        #         )
-        #         data.save()
-        #         msg.success(request, 'Uploaded Successfully')
-        #         return redirect('cv_appreciation')
-        #
-        # else:
-        #     print('invalid')
-        #     msg.error(request, 'Invalid data')
-        return redirect('upload_cv')
+        if upload_cv_form.is_valid():
+            # get form data
+            name = upload_cv_form.cleaned_data['name']
+            email = upload_cv_form.cleaned_data['email']
+            phone = upload_cv_form.cleaned_data['phone']
+            cv_format = upload_cv_form.cleaned_data['cv_format']
+            cv_upload = request.FILES['cv_upload']
+            agree_to_terms = upload_cv_form.cleaned_data['agree_to_terms']
+
+            # check if email exists
+            if models.UploadCV.objects.filter(email=email).exists():
+                msg.error(request, 'Email already exists!')
+                return redirect('upload_cv')
+            else:
+                # insert data to database
+                data = models.UploadCV.objects.create(
+                    name=name, email=email, phone=phone, cv_format=cv_format, cv_upload=cv_upload,
+                    agree_to_terms=agree_to_terms
+                )
+                data.save()
+                msg.success(request, 'Uploaded Successfully')
+                return redirect('cv_appreciation')
+
+        else:
+            msg.error(request, 'Invalid data')
+            return redirect('upload_cv')
 
 
 def appreciation(request):
@@ -133,3 +118,41 @@ def appreciation(request):
         'rightAd': right_ad
     }
     return render(request, 'upload_cv/appreciation.html', context)
+
+
+def search_cv(request):
+    query_set_list = models.UploadCV.objects.order_by('id')
+    sent = ''
+
+    if 'sent' in request.GET:
+        sent = request.GET['sent']
+
+    if 'email' in request.GET:
+        email = request.GET['email']
+        if email:
+            if query_set_list.filter(email__iexact=email).exists():
+                query_set_list = query_set_list.filter(email__iexact=email)
+            else:
+                msg.error(request, 'Email does not exist!')
+                return redirect('search-cv')
+
+    context = {
+        'query_set_list': query_set_list,
+        'sent': sent
+    }
+    return render(request, 'upload_cv/search_cv.html', context)
+
+
+def download_cv(request):
+    query_set_list = models.UploadCV.objects.order_by('id')
+
+    if 'email' in request.GET:
+        email = request.GET['email']
+        if email:
+            query_set_list = query_set_list.filter(email__iexact=email)
+
+    context = {
+        'query_set_list': query_set_list
+    }
+
+    return render(request, 'upload_cv/download_cv.html', context)

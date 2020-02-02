@@ -72,6 +72,20 @@
                             <div class="form-group mt-3">
                                 <input type="submit" value="Upload" class="btn btn-block btn-outline-warning">
                             </div>
+                            {% if upload_cv_form.errors %}
+                                {% for field in upload_cv_form %}
+                                    {% for error in upload_cv_form.errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                                {% for error in upload_cv_form.non_field_errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error|escape }}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
                         </form>
                     </div>
                 </div>
@@ -90,7 +104,7 @@
         <div class="container-fluid">
             <div class="row p-5 mb-5">
                 {% for data in bottomAd %}
-                    <div class="col-3">
+                    <div class="col-2">
                         <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
                                                                        alt="{{ data.title }}"></a><br>
                         <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"

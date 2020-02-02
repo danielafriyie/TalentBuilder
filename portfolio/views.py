@@ -82,3 +82,28 @@ def portfolio_theme(request, portfolio_id, slug_name):
         return render(request, 'portfolio/green_theme.html', context)
     elif p_id.theme == 'nano theme':
         return render(request, 'portfolio/nano_theme.html', context)
+
+
+def search_portfolio(request):
+    query_set_list = models.Portfolio.objects.order_by('id')
+    sent = ''
+    portfolio_link = 'https://wwww.talentbuilder.com/portfolio/'
+
+    if 'sent' in request.GET:
+        sent = request.GET['sent']
+
+    if 'email' in request.GET:
+        email = request.GET['email']
+        if email:
+            if query_set_list.filter(email__iexact=email).exists():
+                query_set_list = query_set_list.filter(email__iexact=email)
+            else:
+                msg.error(request, 'Email does not exist!')
+                return redirect('search_portfolio')
+
+    context = {
+        'query_set_list': query_set_list,
+        'sent': sent,
+        'portfolio_link': portfolio_link
+    }
+    return render(request, 'portfolio/search_portfolio.html', context)
