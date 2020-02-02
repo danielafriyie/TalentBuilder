@@ -87,7 +87,7 @@ def portfolio_theme(request, portfolio_id, slug_name):
 def search_portfolio(request):
     query_set_list = models.Portfolio.objects.order_by('id')
     sent = ''
-    portfolio_link = 'https://wwww.talentbuilder.com/portfolio'
+    portfolio_link = 'https://wwww.talentbuilder.com/portfolio/'
 
     if 'sent' in request.GET:
         sent = request.GET['sent']
