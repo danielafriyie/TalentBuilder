@@ -15,7 +15,8 @@
                         and our portfolio website will get you hired faster! <br>
                         <a href="{% url 'upload_cv' %}" class="btn my-bg-1 text-center color-1 nice-border">Upload Your
                             CV</a>
-                        <a href="{% url 'portfolio' %}" class="btn my-bg-1 text-center color-1 nice-border">Get Your Portfolio Website</a>
+                        <a href="{% url 'portfolio' %}" class="btn my-bg-1 text-center color-1 nice-border">Get Your
+                            Portfolio Website</a>
                     </p>
 
                 </div>
@@ -37,7 +38,8 @@
                             A professional, well-written and targeted CV is crucial for successfully landing your next
                             role. Opinions and ideas vary enormously about the ideal content of a CV. Ultimately, a CV
                             must showcase your skills and experience in a way that encourages the recruiter to invite
-                            you for an interview. Our free CV Writing Service provides a personal, and approachable way to
+                            you for an interview. Our free CV Writing Service provides a personal, and approachable way
+                            to
                             have a great CV of which to be proud.
                         </p>
                         <div class="d-flex align-items-center justify-content-center pb-5">
@@ -63,7 +65,8 @@
                             professional brand. In today’s digital world, a portfolio is arguably more important than a
                             resume, no matter what industry you work in. Whether you are a journalist, a recent graduate
                             looking for a job, or even an accountant, your portfolio will provide the most powerful and
-                            comprehensive perspective on you. Our free portfolio website gives the client a sense of who you
+                            comprehensive perspective on you. Our free portfolio website gives the client a sense of who
+                            you
                             are, what you can do and whether you are the person they should hire to execute their
                             project and trust me, they will know you are the perfect match.
                         </p>
@@ -90,7 +93,7 @@
                     <div class="row">
                         <div class="col">
                             <p class="text-center color-2 f-1">
-                                <i class="fa fa-cloud-upload-alt color-2 fa-7x text-center"></i><br>
+                                <i class="fa fa-upload color-2 fa-7x text-center"></i><br>
                                 Upload your CV
                             </p>
                         </div>
@@ -117,6 +120,45 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <section id="testimonials" class="my-bg-2 pt-5">
+        <div class="container">
+            {% if testimonials %}
+                <h1 class="color-2 text-center text-uppercase">Testimonials</h1>
+                <hr>
+                <div class="row">
+                    {% for testimonies in testimonials %}
+                        <div class="col-md-6 col-lg-3 pb-5">
+                            <h3 class="color-2"><i class="fa fa-user"></i> {{ testimonies.name }}</h3>
+                            <p class="color-2 lead">
+                                <i class="fa fa-edit"></i>
+                                {{ testimonies.testimony }}
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+    <section id="shortlist">
+        <div class="container">
+            {% if short_list %}
+                <h1 class="color-2 text-center">OUR CV's HAS BEEN SHORTLISTED BY THESE COMPANIES</h1>
+                <hr>
+                <div class="row py-5">
+                    {% for data in short_list %}
+                        <div class="col-2">
+                            {% if data.image %}
+                                <img class="img-fluid disabled" src="{{ data.image.url }}" alt="image">
+                            {% elif data.font_awesome_class %}
+                                <div><i class="{{ data.font_awesome_class }} fa-8x text-secondary" disabled=""></i></div>
+                            {% endif %}
+
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

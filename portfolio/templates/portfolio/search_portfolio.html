@@ -2,6 +2,19 @@
 {% block title %} | Get Your Own Portfolio Website {% endblock %}
 {% block content %}
     <section>
+        {#            top ads#}
+        <div class="container-fluid">
+            <div class="row pt-5">
+                <div class="col-12">
+                    <a target="_blank" href="{{ topAd.link }}">
+                        <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                             alt="{{ topAd.title }}">
+                    </a>
+                </div>
+            </div>
+        </div>
+        {#            end of top ads#}
+
         <div class="container py-5">
             <div class="row py-5 align-items-center align-content-center justify-content-center">
                 <div class="col-lg-6 my-bg-1 p-5" style="border-radius: 20px;">
@@ -26,18 +39,21 @@
                         {% for data in query_set_list %}
                             {% if data.slug_name %}
                                 <p class="text-center color-1 lead">Congrats {{ data.name }} you have achieved high
-                                    points! Your portfolio website is ready, click below to open your portfolio website</p>
+                                    points! Your portfolio website is ready, click below to open your portfolio
+                                    website</p>
                                 <a target="_blank" style="width: 100%;" class="btn btn-outline-warning"
                                    href="{% url 'theme' data.id data.slug_name %}">
                                     Preview Portfolio
                                 </a>
                                 <p class="text-center color-1 lead pt-5">
-                                    <input style="width: 100%" type="text" value="{{ portfolio_link }}{{ data.id }}/{{ data.slug_name }}">
+                                    <input style="width: 100%" type="text"
+                                           value="{{ portfolio_link }}{{ data.id }}/{{ data.slug_name }}">
                                 </p>
                             {% else %}
                                 <p class="text-center lead color-1">
                                     Welcome {{ data.name }}, our staff are currently working on your job winning
-                                    portfolio website to help you achieve high points, we will notify you when it is ready.
+                                    portfolio website to help you achieve high points, we will notify you when it is
+                                    ready.
                                 </p>
                             {% endif %}
                         {% endfor %}
@@ -45,5 +61,20 @@
                 </div>
             </div>
         </div>
+
+        {#            bottom ads#}
+        <div class="container-fluid">
+            <div class="row p-5 mb-5">
+                {% for data in bottomAd %}
+                    <div class="col-2">
+                        <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
+                                                                       alt="{{ data.title }}"></a><br>
+                        <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                           class="color-2">{{ data.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {#            end of bottom ads#}
     </section>
 {% endblock %}

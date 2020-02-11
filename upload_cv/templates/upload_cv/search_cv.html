@@ -2,6 +2,19 @@
 {% block title %} | Get Your Job Winning CV {% endblock %}
 {% block content %}
     <section>
+        {#            top ads#}
+        <div class="container-fluid">
+            <div class="row pt-5">
+                <div class="col-12">
+                    <a target="_blank" href="{{ topAd.link }}">
+                        <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                             alt="{{ topAd.title }}">
+                    </a>
+                </div>
+            </div>
+        </div>
+        {#            end of top ads#}
+
         <div class="container py-5">
             <div class="row py-5 align-items-center align-content-center justify-content-center">
                 <div class="col-lg-6 my-bg-1 p-5" style="border-radius: 20px;">
@@ -19,14 +32,18 @@
                         </div>
                     </form>
                     <div class="p-5"
-                         {% if not sent %}
-                            style="display: none"
-                         {% endif %}
+                            {% if not sent %}
+                         style="display: none"
+                            {% endif %}
                     >
                         {% for data in query_set_list %}
                             {% if data.revised_cv %}
-                                <p class="text-center color-1 lead">Congrats {{ data.name }} you have achieved high points!</p>
-                                <a style="width: 100%;" class="btn btn-outline-warning" href="{{ data.revised_cv.url }}">
+                                <p class="text-center color-1 lead">
+                                    Congrats {{ data.name }} your job winning CV is ready.
+                                    You have achieved high points!
+                                </p>
+                                <a style="width: 100%;" class="btn btn-outline-warning"
+                                   href="{{ data.revised_cv.url }}">
                                     Click to Download CV
                                 </a>
                             {% else %}
@@ -40,5 +57,20 @@
                 </div>
             </div>
         </div>
+
+        {#            bottom ads#}
+        <div class="container-fluid">
+            <div class="row p-5 mb-5">
+                {% for data in bottomAd %}
+                    <div class="col-2">
+                        <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
+                                                                       alt="{{ data.title }}"></a><br>
+                        <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                           class="color-2">{{ data.title }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {#            end of bottom ads#}
     </section>
 {% endblock %}

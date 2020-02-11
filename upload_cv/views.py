@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages as msg
 from django.views.generic import View
 from . import models
+from advertisement import models as ad_models
 from . import forms
 
 
@@ -10,10 +11,10 @@ def upload_cv(request):
     # Forms
     upload_cv_form = forms.UploadCVForm()
     # Advertisements
-    top_ad = models.TopAd.objects.filter(status=True).all().first()
-    bottom_ad = models.BottomAd.objects.all().filter(status=True)
-    left_ad = models.LeftAd.objects.all().filter(status=True).first()
-    right_ad = models.RightAd.objects.all().filter(status=True).first()
+    top_ad = ad_models.TopAd.objects.filter(status=True).all().first()
+    bottom_ad = ad_models.BottomAd.objects.all().filter(status=True)[:6]
+    left_ad = ad_models.LeftAd.objects.all().filter(status=True).first()
+    right_ad = ad_models.RightAd.objects.all().filter(status=True).first()
     context = {
         'topAd': top_ad,
         'bottomAd': bottom_ad,
@@ -61,10 +62,10 @@ class UploadCVView(View):
         # Forms
         upload_cv_form = forms.UploadCVForm()
         # Advertisements
-        top_ad = models.TopAd.objects.filter(status=True).all().first()
-        bottom_ad = models.BottomAd.objects.all().filter(status=True)
-        left_ad = models.LeftAd.objects.all().filter(status=True).first()
-        right_ad = models.RightAd.objects.all().filter(status=True).first()
+        top_ad = ad_models.TopAd.objects.filter(status=True).all().first()
+        bottom_ad = ad_models.BottomAd.objects.all().filter(status=True)[:6]
+        left_ad = ad_models.LeftAd.objects.all().filter(status=True).first()
+        right_ad = ad_models.RightAd.objects.all().filter(status=True).first()
         context = {
             'topAd': top_ad,
             'bottomAd': bottom_ad,
@@ -83,6 +84,7 @@ class UploadCVView(View):
             name = upload_cv_form.cleaned_data['name']
             email = upload_cv_form.cleaned_data['email']
             phone = upload_cv_form.cleaned_data['phone']
+            career_type = upload_cv_form.cleaned_data['career_type']
             cv_format = upload_cv_form.cleaned_data['cv_format']
             cv_upload = request.FILES['cv_upload']
             agree_to_terms = upload_cv_form.cleaned_data['agree_to_terms']
@@ -94,8 +96,8 @@ class UploadCVView(View):
             else:
                 # insert data to database
                 data = models.UploadCV.objects.create(
-                    name=name, email=email, phone=phone, cv_format=cv_format, cv_upload=cv_upload,
-                    agree_to_terms=agree_to_terms
+                    name=name, email=email, phone=phone, career_type=career_type, cv_format=cv_format,
+                    cv_upload=cv_upload, agree_to_terms=agree_to_terms
                 )
                 data.save()
                 msg.success(request, 'Uploaded Successfully')
@@ -107,10 +109,10 @@ class UploadCVView(View):
 
 
 def appreciation(request):
-    top_ad = models.TopAd.objects.filter(status=True).all().first()
-    bottom_ad = models.BottomAd.objects.all().filter(status=True)
-    left_ad = models.LeftAd.objects.all().filter(status=True).first()
-    right_ad = models.RightAd.objects.all().filter(status=True).first()
+    top_ad = ad_models.TopAd.objects.filter(status=True).all().first()
+    bottom_ad = ad_models.BottomAd.objects.all().filter(status=True)[:6]
+    left_ad = ad_models.LeftAd.objects.all().filter(status=True).first()
+    right_ad = ad_models.RightAd.objects.all().filter(status=True).first()
     context = {
         'topAd': top_ad,
         'bottomAd': bottom_ad,
@@ -121,6 +123,12 @@ def appreciation(request):
 
 
 def search_cv(request):
+    # Advertisement
+    top_ad = ad_models.TopAd.objects.filter(status=True).all().first()
+    bottom_ad = ad_models.BottomAd.objects.all().filter(status=True)[:6]
+    left_ad = ad_models.LeftAd.objects.all().filter(status=True).first()
+    right_ad = ad_models.RightAd.objects.all().filter(status=True).first()
+
     query_set_list = models.UploadCV.objects.order_by('id')
     sent = ''
 
@@ -138,7 +146,11 @@ def search_cv(request):
 
     context = {
         'query_set_list': query_set_list,
-        'sent': sent
+        'sent': sent,
+        'topAd': top_ad,
+        'bottomAd': bottom_ad,
+        'leftAd': left_ad,
+        'rightAd': right_ad
     }
     return render(request, 'upload_cv/search_cv.html', context)
 

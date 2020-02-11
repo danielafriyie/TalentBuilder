@@ -1,9 +1,16 @@
 from django.shortcuts import render, redirect
 from . import models
+from advertisement.models import BannerAdRate
 
 
 def home(request):
-    return render(request, 'pages/index.html')
+    testimonials = models.Testimonials.objects.order_by('-id').all()[:4]
+    short_list = models.ShortListCompanies.objects.order_by('-id').all()
+    context = {
+        'testimonials': testimonials,
+        'short_list': short_list
+    }
+    return render(request, 'pages/index.html', context)
 
 
 def about(request):
@@ -23,6 +30,5 @@ def privacy(request):
 
 
 def banner_ads(request):
-    rate_file = models.BannerAds.objects.all().order_by('-id').first().rate.url
-
+    rate_file = BannerAdRate.objects.all().order_by('-id').first().rate.url
     return redirect(rate_file)

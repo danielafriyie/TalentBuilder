@@ -29,10 +29,6 @@ ALLOWED_HOSTS = ['127.0.0.1', '192.168.137.1', '0.0.0.0']
 # Application definition
 
 INSTALLED_APPS = [
-    'pages.apps.PagesConfig',
-    'upload_cv.apps.UploadCvConfig',
-    'portfolio.apps.PortfolioConfig',
-    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
+    # My Apps
+    'pages',
+    'upload_cv',
+    'portfolio',
+    'blog',
+    'advertisement'
 ]
 
 MIDDLEWARE = [
@@ -78,7 +81,7 @@ WSGI_APPLICATION = 'TalentBuilder.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'TBuilder',
+        'NAME': 'talent_builder',
         'USER': 'Afriyie Daniel',
         'PASSWORD': 'dandare1798',
         'HOST': 'localhost',

@@ -1,70 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
-
-
-class TopAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='BannerAds/Portfolio/TopAd/%Y/%m/%d/')
-    title = models.CharField(max_length=255)
-    date = models.DateTimeField(default=now())
-    expiry = models.DateTimeField()
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-
-class BottomAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='BannerAds/Portfolio/BottomAd/%Y/%m/%d/')
-    title = models.CharField(max_length=255)
-    date = models.DateTimeField(default=now())
-    expiry = models.DateTimeField()
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-
-class RightAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='BannerAds/Portfolio/RightAd/%Y/%m/%d/')
-    title = models.CharField(max_length=255)
-    date = models.DateTimeField(default=now())
-    expiry = models.DateTimeField()
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-
-class LeftAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='BannerAds/Portfolio/LeftAd/%Y/%m/%d/')
-    title = models.CharField(max_length=255)
-    date = models.DateTimeField(default=now())
-    expiry = models.DateTimeField()
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
-
-
-class PortfolioAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255, blank=True)
-    image = models.ImageField(upload_to='BannerAds/Portfolio/PortfolioAd/%Y/%m/%d/', blank=True)
-    title = models.CharField(max_length=255)
-    date = models.DateTimeField(default=now())
-    expiry = models.DateTimeField()
-    status = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.name
+from advertisement.models import PortfolioAd
 
 
 class Portfolio(models.Model):
@@ -89,7 +25,7 @@ class Portfolio(models.Model):
     # Portfolio link
     portfolio_link = models.CharField(max_length=255, blank=True)
     # Banner Ads
-    banner_ad = models.ForeignKey(PortfolioAd, on_delete=models.DO_NOTHING, blank=True)
+    banner_ad = models.ForeignKey(PortfolioAd, on_delete=models.DO_NOTHING, blank=True, null=True)
 
     def __str__(self):
         return self.name

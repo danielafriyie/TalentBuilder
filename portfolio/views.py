@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages as msg
 from . import models
+from advertisement import models as ad_models
 
 
 def portfolio(request):
-    top_ad = models.TopAd.objects.filter(status=True).all().first()
-    bottom_ad = models.BottomAd.objects.all().filter(status=True)
-    left_ad = models.LeftAd.objects.all().filter(status=True).first()
-    right_ad = models.RightAd.objects.all().filter(status=True).first()
+    top_ad = ad_models.TopAd.objects.filter(status=True).all().first()
+    bottom_ad = ad_models.BottomAd.objects.all().filter(status=True)[:6]
+    left_ad = ad_models.LeftAd.objects.all().filter(status=True).first()
+    right_ad = ad_models.RightAd.objects.all().filter(status=True).first()
     context = {
         'topAd': top_ad,
         'bottomAd': bottom_ad,
@@ -32,7 +33,7 @@ def portfolio(request):
         linkedin = request.POST['linkedin']
         theme = request.POST['theme']
         agree_to_terms = request.POST['agree_to_terms']
-        banner_ad = models.PortfolioAd.objects.all().get(id=1)
+        # banner_ad = models.PortfolioAd.objects.all().get(id=1)
 
         # check for existing email
         if models.Portfolio.objects.filter(email=email).exists():
@@ -44,7 +45,6 @@ def portfolio(request):
                 name=name, slug_name=slug_name, email=email, phone=phone, p_headline=p_headline, about=about,
                 picture=picture, cv_upload=cv_upload, facebook=facebook, twitter=twitter,
                 instagram=instagram, linkedin=linkedin, theme=theme, agree_to_terms=agree_to_terms,
-                banner_ad=banner_ad
             )
             data.save()
             msg.success(request, 'Form submitted successfully')
@@ -54,10 +54,10 @@ def portfolio(request):
 
 
 def appreciation(request):
-    top_ad = models.TopAd.objects.filter(status=True).all().first()
-    bottom_ad = models.BottomAd.objects.all().filter(status=True)
-    left_ad = models.LeftAd.objects.all().filter(status=True).first()
-    right_ad = models.RightAd.objects.all().filter(status=True).first()
+    top_ad = ad_models.TopAd.objects.filter(status=True).all().first()
+    bottom_ad = ad_models.BottomAd.objects.all().filter(status=True)[:6]
+    left_ad = ad_models.LeftAd.objects.all().filter(status=True).first()
+    right_ad = ad_models.RightAd.objects.all().filter(status=True).first()
     context = {
         'topAd': top_ad,
         'bottomAd': bottom_ad,
@@ -85,6 +85,12 @@ def portfolio_theme(request, portfolio_id, slug_name):
 
 
 def search_portfolio(request):
+    # Advertisement
+    top_ad = ad_models.TopAd.objects.filter(status=True).all().first()
+    bottom_ad = ad_models.BottomAd.objects.all().filter(status=True)[:6]
+    left_ad = ad_models.LeftAd.objects.all().filter(status=True).first()
+    right_ad = ad_models.RightAd.objects.all().filter(status=True).first()
+
     query_set_list = models.Portfolio.objects.order_by('id')
     sent = ''
     portfolio_link = 'https://wwww.talentbuilder.com/portfolio/'
@@ -104,6 +110,10 @@ def search_portfolio(request):
     context = {
         'query_set_list': query_set_list,
         'sent': sent,
-        'portfolio_link': portfolio_link
+        'portfolio_link': portfolio_link,
+        'topAd': top_ad,
+        'bottomAd': bottom_ad,
+        'leftAd': left_ad,
+        'rightAd': right_ad
     }
     return render(request, 'portfolio/search_portfolio.html', context)

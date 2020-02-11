@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="author" content="Talent Builder">
         <meta name="description"
-              content="Hi am {{ portfolio.name }}, I've gotten my free portfolio website from Talent Builder.
+              content="Hi am {{ portfolio.name }}, I'm a(n) {{ portfolio.p_headline }}, I've gotten my free portfolio website from Talent Builder.
               I have achieved my high points. What are you waiting for, come get yours, come let's achieve high points">
         <title>{{ portfolio.name }}</title>
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
@@ -102,7 +102,7 @@
             <div class="row">
                 <div class="col-12">
                     {% if portfolio.banner_ad.link %}
-                        <a target="_blank" href="{{ portfolio.banner_ad.link }}">
+                        <a target="_blank" href="{{ portfolio.banner_ad.link }}"></a>
                     {% endif %}
                     {% if portfolio.banner_ad.image %}
                         <img id="adImage" class="img-fluid" src="{{ portfolio.banner_ad.image.url }}" style="width: 100%"
