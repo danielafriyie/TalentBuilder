@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from . import models
 from advertisement.models import BannerAdRate
+from django.core.mail import send_mail
+from django.http import HttpResponse
 
 
 def home(request):
@@ -32,3 +34,14 @@ def privacy(request):
 def banner_ads(request):
     rate_file = BannerAdRate.objects.all().order_by('-id').first().rate.url
     return redirect(rate_file)
+
+
+def my_mail(request):
+    send_mail(
+        'Subject here',
+        'Here is the message.',
+        'talentbuilderghana@outlook.com',
+        ['danielafriyie98@gmail.com', 'afriyiedaniel1@outlook.com'],
+        fail_silently=False,
+    )
+    return HttpResponse('<h1>EMAIL SENT</h1>')

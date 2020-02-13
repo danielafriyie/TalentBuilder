@@ -9,14 +9,17 @@
         <div class="container">
             <div class="row align-items-center height">
                 <div class="col">
-                    <h2 class="text-center color-1 display-3 font-weight-normal">Double your interview
-                        chances!</h2>
+                    <h2 class="text-center color-1 display-3 font-weight-normal">
+                        Double your interview chances!
+                    </h2>
                     <p class="color-1 text-center f-1 m-auto">Our free CV writing package will land you more interviews
                         and our portfolio website will get you hired faster! <br>
-                        <a href="{% url 'upload_cv' %}" class="btn my-bg-1 text-center color-1 nice-border">Upload Your
-                            CV</a>
+                        <a href="{% url 'upload_cv' %}" class="btn my-bg-1 text-center color-1 nice-border">
+                            Upload Your CV
+                        </a>
                         <a href="{% url 'portfolio' %}" class="btn my-bg-1 text-center color-1 nice-border">Get Your
-                            Portfolio Website</a>
+                            Portfolio Website
+                        </a>
                     </p>
 
                 </div>
@@ -144,7 +147,7 @@
     <section id="shortlist">
         <div class="container">
             {% if short_list %}
-                <h1 class="color-2 text-center">OUR CV's HAS BEEN SHORTLISTED BY THESE COMPANIES</h1>
+                <h1 class="color-2 text-center">OUR CV's HAS BEEN SHORTLISTED BY:</h1>
                 <hr>
                 <div class="row py-5">
                     {% for data in short_list %}

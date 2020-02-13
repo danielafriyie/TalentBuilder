@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section id="manage-portfolio-banner-ads">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col py-5">
+                    <h1 class="text-center text-uppercase color-2">Manage Portfolio Banner Ads</h1>
+                    <hr>
+                    {% include 'partials/_alert.html' %}
+                    <form action="{% url 'portfolio_banner_ads' %}" class="py-5 text-center" method="post">
+                        {% csrf_token %}
+                        <div>
+                            <label for="{{ forms.banner_ad_id.id_for_label }}" style="width: 10rem;">Banner Ad ID:</label>
+                            {{ forms.banner_ad_id }}
+                        </div>
+                        <div>
+                            <label for="{{ forms.id_from.id_for_label }}" style="width: 10rem;">From:</label>
+                            {{ forms.id_from }}
+                        </div>
+                        <div>
+                            <label for="{{ forms.id_to.id_for_label }}" style="width: 10rem;">To:</label>
+                            {{ forms.id_to }}
+                        </div>
+                        <div class="py-2">
+                            <input class="btn btn-outline-info mx-2" type="reset" value="RESET" style="width: 15rem">
+                            <input class="btn btn-outline-success mx-2" type="submit" value="EXECUTE" style="width: 15rem">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

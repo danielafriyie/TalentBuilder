@@ -103,13 +103,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    {% if portfolio.banner_ad.link %}
-                        <a target="_blank" href="{{ portfolio.banner_ad.link }}"></a>
-                    {% endif %}
-                    {% if portfolio.banner_ad.image %}
-                        <img id="adImage" class="img-fluid" src="{{ portfolio.banner_ad.image.url }}"
-                             style="width: 100%"
-                             alt="{{ portfolio.banner_ad.title }}">
+                    {% if portfolio.banner_ad.link and portfolio.banner_ad.image %}
+                        <a target="_blank" href="{{ portfolio.banner_ad.link }}">
+                            <img id="adImage" class="img-fluid" src="{{ portfolio.banner_ad.image.url }}"
+                                 style="width: 100%"
+                                 alt="{{ portfolio.banner_ad.title }}">
+                        </a>
                     {% endif %}
                 </div>
             </div>
@@ -173,6 +172,9 @@
     <script type="text/javascript" rel="script" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     {#My javascript#}
     <script type="text/javascript" rel="script" src="{% static 'js/main.js' %}"></script>
+
+    {% include 'partials/_google_analytics.html' %}
+    {% include 'partials/_deactivate_block.html' %}
     </body>
     </html>
 {% endif %}

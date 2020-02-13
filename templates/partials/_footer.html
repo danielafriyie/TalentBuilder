@@ -1,4 +1,9 @@
+{% load static %}
 <style>
+    #filler {
+        background: linear-gradient(rgba(93,73,84,0.9), rgba(93,73,84,0.9)), url("{% static 'img/bcg3.jpeg' %}") center/cover no-repeat fixed;
+    }
+
     footer {
         width: 100%;
         position: absolute;
@@ -10,7 +15,7 @@
     }
 
 </style>
-<section class="container-fluid my-bg-1 p-5">
+<section id="filler" class="container-fluid p-5">
     <div class="container py-3">
         <div class="row align-items-center p-5">
             <div class="col p-3 p-5">

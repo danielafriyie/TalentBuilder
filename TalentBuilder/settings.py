@@ -18,14 +18,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wd3##!3+y7%v0ssc55rdfgo64c#zk1n71h_-^r=zupo71^c9)@'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.137.1', '0.0.0.0']
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -138,3 +130,8 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+try:
+    from .prod_settings import *
+except ImportError:
+    pass
