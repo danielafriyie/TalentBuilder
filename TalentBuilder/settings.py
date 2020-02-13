@@ -70,17 +70,6 @@ WSGI_APPLICATION = 'TalentBuilder.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'talent_builder',
-        'USER': 'Afriyie Daniel',
-        'PASSWORD': 'dandare1798',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
