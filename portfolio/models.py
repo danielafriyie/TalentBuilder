@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from advertisement.models import PortfolioAd
+# from pages.models import MyEmailConfiguration
 
 
 class Portfolio(models.Model):
@@ -29,3 +30,17 @@ class Portfolio(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class EmailAction(models.Model):
+    client_id = models.ForeignKey(Portfolio, on_delete=models.SET_NULL, null=True)
+    action = models.CharField(max_length=20)
+    date = models.DateTimeField(default=now())
+
+
+class PortfolioMailMessage(models.Model):
+    subject = models.CharField(max_length=255)
+    before_msg = models.CharField(max_length=255)
+    after_msg = models.CharField(max_length=255)
+    host_user = models.EmailField(max_length=255)
+    date = models.DateTimeField(default=now())

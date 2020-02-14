@@ -8,6 +8,8 @@ from django.db import connection
 from django.db.utils import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from datetime import datetime as dt
+from django.core.mail import send_mail
 
 
 def portfolio(request):
@@ -54,9 +56,120 @@ def portfolio(request):
             )
             data.save()
             msg.success(request, 'Form submitted successfully')
-            return redirect('portfolio_appreciation')
+
+            # get the current client
+            current_client = models.Portfolio.objects.order_by('email').all().get(email=email)
+
+            # send email to client
+            try:
+                email_msg = models.PortfolioMailMessage.objects.order_by('-date').all().first()
+                msg_body = f'{email_msg.before_msg}, {name}, {email_msg.after_msg}'
+                send_mail(
+                    email_msg.subject,
+                    msg_body,
+                    email_msg.host_user,
+                    [email],
+                    fail_silently=False,
+                )
+                email_act = models.EmailAction.objects.create(
+                    client_id=current_client,
+                    action='sent',
+                    date=dt.now()
+                )
+                email_act.save()
+                return redirect('portfolio_appreciation')
+            except:
+                email_act = models.EmailAction.objects.create(
+                    client_id=current_client,
+                    action='not sent',
+                    date=dt.now()
+                )
+                email_act.save()
+                return redirect('portfolio_appreciation')
 
     return render(request, 'portfolio/portfolio.html', context)
+
+
+class PortfolioView(View):
+
+    def get(self, request):
+        top_ad = ad_models.TopAd.objects.filter(status=True).all().first()
+        bottom_ad = ad_models.BottomAd.objects.all().filter(status=True)[:6]
+        left_ad = ad_models.LeftAd.objects.all().filter(status=True).first()
+        right_ad = ad_models.RightAd.objects.all().filter(status=True).first()
+        context = {
+            'topAd': top_ad,
+            'bottomAd': bottom_ad,
+            'leftAd': left_ad,
+            'rightAd': right_ad
+        }
+
+        return render(request, 'portfolio/portfolio.html', context)
+
+    def post(self, request):
+        # get form data
+        name = request.POST['name']
+        slug_name = name.lower().replace(' ', '-')
+        email = request.POST['email']
+        phone = request.POST['phone']
+        p_headline = request.POST['p_headline']
+        about = request.POST['about']
+        cv_upload = request.FILES['cv_upload']
+        picture = request.FILES['picture']
+        facebook = request.POST['facebook']
+        twitter = request.POST['twitter']
+        instagram = request.POST['instagram']
+        linkedin = request.POST['linkedin']
+        theme = request.POST['theme']
+        agree_to_terms = request.POST['agree_to_terms']
+        # banner_ad = models.PortfolioAd.objects.all().get(id=1)
+
+        # check for existing email
+        if models.Portfolio.objects.filter(email=email).exists():
+            msg.error(request, 'Email already exists')
+            return redirect('portfolio')
+        else:
+            # insert data into database
+            data = models.Portfolio.objects.create(
+                name=name, slug_name=slug_name, email=email, phone=phone, p_headline=p_headline, about=about,
+                picture=picture, cv_upload=cv_upload, facebook=facebook, twitter=twitter,
+                instagram=instagram, linkedin=linkedin, theme=theme, agree_to_terms=agree_to_terms,
+            )
+            data.save()
+            msg.success(request, 'Form submitted successfully')
+
+            # get the current client instance
+            try:
+                self.current_client = models.Portfolio.objects.order_by('email').all().get(email=email)
+            except:
+                pass
+
+            # send email to client
+            try:
+                email_msg = models.PortfolioMailMessage.objects.order_by('-date').all().first()
+                msg_body = f'{email_msg.before_msg}, {name}, {email_msg.after_msg}'
+                send_mail(
+                    email_msg.subject,
+                    msg_body,
+                    email_msg.host_user,
+                    [email],
+                    fail_silently=False,
+                )
+                email_act = models.EmailAction.objects.create(
+                    client_id=self.current_client,
+                    action='sent',
+                    date=dt.now()
+                )
+                email_act.save()
+                return redirect('portfolio_appreciation')
+            except:
+                email_act = models.EmailAction.objects.create(
+                    client_id=self.current_client,
+                    action='not sent',
+                    date=dt.now()
+                )
+                email_act.save()
+                return redirect('portfolio_appreciation')
 
 
 def appreciation(request):

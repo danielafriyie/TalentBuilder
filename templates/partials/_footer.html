@@ -1,7 +1,7 @@
 {% load static %}
 <style>
     #filler {
-        background: linear-gradient(rgba(93,73,84,0.9), rgba(93,73,84,0.9)), url("{% static 'img/bcg3.jpeg' %}") center/cover no-repeat fixed;
+        background: linear-gradient(rgba(93, 73, 84, 0.9), rgba(93, 73, 84, 0.9)), url("{% static 'img/bcg3.jpeg' %}") center/cover no-repeat fixed;
     }
 
     footer {
@@ -20,9 +20,13 @@
         <div class="row align-items-center p-5">
             <div class="col p-3 p-5">
                 <h1 class="color-1 text-center">Ready to achieve high points?<br><br>
-                    <a href="{% url 'upload_cv' %}" class="btn btn-outline-warning nice-border mt-3">Upload your CV</a>
-                    <a href="{% url 'portfolio' %}" class="btn btn-outline-warning nice-border mt-3">Get Your Portfolio
-                        Website</a>
+                    <a href="{% url 'upload_cv' %}" class="btn btn-outline-warning nice-border mt-3"
+                       style='width: 15rem;'>
+                        Upload your CV</a>
+                    <a href="{% url 'portfolio' %}" class="btn btn-outline-warning nice-border mt-3"
+                       style='width: 15rem;'>
+                        Get Your Portfolio Website
+                    </a>
                 </h1>
             </div>
         </div>
@@ -35,7 +39,7 @@
                 <a href="https://web.facebook.com/talentbuilderghana/" target="_blank"><i
                         class="fab fa-facebook fa-3x footer-color"></i></a>
                 <div><i class="fas fa-phone fa-2x footer-color"></i> (+233) 543833501 / (+233) 502155025</div>
-                <a href="mailto:talentbuilderghana@outlook.com"><i class="fas fa-envelope fa-3x footer-color"></i></a>
+                <a href="mailto:contact@talentbuilder.top"><i class="fas fa-envelope fa-3x footer-color"></i></a>
             </div>
         </div>
         <div class="row align-items-center mt-3">

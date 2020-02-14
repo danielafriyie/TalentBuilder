@@ -19,3 +19,14 @@ class ShortListCompanies(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# class MyEmailConfiguration(models.Model):
+#     host = models.CharField(max_length=30)
+#     port = models.IntegerField()
+#     host_user = models.EmailField(max_length=255, unique=True)
+#     host_password = models.CharField(max_length=255)
+#     date = models.DateTimeField(default=now())
+#
+#     def __str__(self):
+#         return self.host_user

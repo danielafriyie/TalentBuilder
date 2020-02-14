@@ -19,3 +19,11 @@ class ShortListCompaniesAdmin(admin.ModelAdmin):
 
 admin.site.register(models.ShortListCompanies, ShortListCompaniesAdmin)
 
+
+# class EmailConfigurationAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'host', 'host_user', 'port', 'date')
+#     list_display_links = ('id', 'host', 'host_user')
+#     list_per_page = 25
+#
+#
+# admin.site.register(models.MyEmailConfiguration, EmailConfigurationAdmin)

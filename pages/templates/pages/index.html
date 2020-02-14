@@ -14,11 +14,13 @@
                     </h2>
                     <p class="color-1 text-center f-1 m-auto">Our free CV writing package will land you more interviews
                         and our portfolio website will get you hired faster! <br>
-                        <a href="{% url 'upload_cv' %}" class="btn my-bg-1 text-center color-1 nice-border">
+                        <a href="{% url 'upload_cv' %}" class="btn my-bg-1 text-center color-1 nice-border"
+                           style='width: 15rem;'>
                             Upload Your CV
                         </a>
-                        <a href="{% url 'portfolio' %}" class="btn my-bg-1 text-center color-1 nice-border">Get Your
-                            Portfolio Website
+                        <a href="{% url 'portfolio' %}" class="btn my-bg-1 text-center color-1 nice-border"
+                           style='width: 15rem;'>
+                            Get Your Portfolio Website
                         </a>
                     </p>
 
@@ -155,7 +157,8 @@
                             {% if data.image %}
                                 <img class="img-fluid disabled" src="{{ data.image.url }}" alt="image">
                             {% elif data.font_awesome_class %}
-                                <div><i class="{{ data.font_awesome_class }} fa-8x text-secondary" disabled=""></i></div>
+                                <div><i class="{{ data.font_awesome_class }} fa-8x text-secondary" disabled=""></i>
+                                </div>
                             {% endif %}
 
                         </div>

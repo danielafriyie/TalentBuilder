@@ -3,6 +3,7 @@ from . import models
 from advertisement.models import BannerAdRate
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from upload_cv.models import UploadCVMailMessage
 
 
 def home(request):
@@ -32,16 +33,23 @@ def privacy(request):
 
 
 def banner_ads(request):
-    rate_file = BannerAdRate.objects.all().order_by('-id').first().rate.url
-    return redirect(rate_file)
+    try:
+        rate_file = BannerAdRate.objects.all().order_by('-id').first().rate.url
+        return redirect(rate_file)
+    except AttributeError:
+        return redirect('home')
+    except ValueError:
+        return redirect('home')
 
 
-def my_mail(request):
-    send_mail(
-        'Subject here',
-        'Here is the message.',
-        'talentbuilderghana@outlook.com',
-        ['danielafriyie98@gmail.com', 'afriyiedaniel1@outlook.com'],
-        fail_silently=False,
-    )
-    return HttpResponse('<h1>EMAIL SENT</h1>')
+# def my_mail(request):
+#     email_msg = UploadCVMailMessage.objects.order_by('-date').all().first()
+#     msg_body = f'{email_msg.before_msg} Danny {email_msg.after_msg}'
+#     send_mail(
+#         email_msg.subject,
+#         msg_body,
+#         email_msg.host_user.host_user,
+#         ['danielafriyie98@gmail.com', 'afriyiedaniel1@outlook.com'],
+#         fail_silently=False,
+#     )
+#     return HttpResponse('<h1>EMAIL SENT</h1>')

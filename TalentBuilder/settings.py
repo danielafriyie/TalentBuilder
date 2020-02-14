@@ -120,7 +120,10 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
+# from django.core.exceptions import AppRegistryNotReady
+
 try:
     from .prod_settings import *
 except ImportError:
     pass
+

@@ -4,6 +4,8 @@ from django.views.generic import View
 from . import models
 from advertisement import models as ad_models
 from . import forms
+from datetime import datetime as dt
+from django.core.mail import send_mail
 
 
 # Function base view
@@ -45,6 +47,7 @@ def upload_cv(request):
                     name=name, email=email, phone=phone, cv_format=cv_format, cv_upload=cv_upload
                 )
                 data.save()
+
                 msg.success(request, 'Uploaded Successfully')
                 return redirect('cv_appreciation')
 
@@ -100,8 +103,41 @@ class UploadCVView(View):
                     cv_upload=cv_upload, agree_to_terms=agree_to_terms
                 )
                 data.save()
-                msg.success(request, 'Uploaded Successfully')
-                return redirect('cv_appreciation')
+                # msg.success(request, 'Uploaded Successfully')
+                # return redirect('cv_appreciation')
+
+                # Upload CV instance
+                try:
+                    self.current_client = models.UploadCV.objects.order_by('email').all().get(email=email)
+                except:
+                    pass
+
+                # send email to client
+                try:
+                    email_msg = models.UploadCVMailMessage.objects.order_by('-date').all().first()
+                    msg_body = f'{email_msg.before_msg}, {name}, {email_msg.after_msg}'
+                    send_mail(
+                        email_msg.subject,
+                        msg_body,
+                        email_msg.host_user,
+                        [email],
+                        fail_silently=False,
+                    )
+                    email_act = models.EmailAction.objects.create(
+                        client_id=self.current_client,
+                        action='sent',
+                        date=dt.now()
+                    )
+                    email_act.save()
+                    return redirect('cv_appreciation')
+                except:
+                    email_act = models.EmailAction.objects.create(
+                        client_id=self.current_client,
+                        action='not sent',
+                        date=dt.now()
+                    )
+                    email_act.save()
+                    return redirect('cv_appreciation')
 
         else:
             msg.error(request, 'Invalid data')
