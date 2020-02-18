@@ -2,5 +2,5 @@ Django==2.2.7
 Pillow==6.2.1
 psycopg2==2.8.4
 pytz==2019.3
-virtualenv==16.7.7
+psycopgy-binary=2.7.5
 
