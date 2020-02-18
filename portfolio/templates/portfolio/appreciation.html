@@ -7,10 +7,18 @@
         <div class="container-fluid">
             <div class="row pt-5">
                 <div class="col-12">
-                    <a target="_blank" href="{{ topAd.link }}">
-                        <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
-                             alt="{{ topAd.title }}">
-                    </a>
+                    {% if topAd %}
+                        {% if topAd.link %}
+                            <a target="_blank" href="{{ topAd.link }}">
+                                <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                                     alt="{{ topAd.title }}">
+                            </a>
+                        {% endif %}
+                        {% if topAd.html_tag %}
+                            {{ topAd.html_tag | safe }}
+                        {% endif %}
+
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -22,34 +30,47 @@
             <div class="row align-items-center justify-content-center pt-5">
                 {#                left ad#}
                 <div id="leftAd" class="col-lg-4 pt-5">
-                    <a target="_blank" href="{{ leftAd.link }}">
-                        <img class="img-fluid" src="{{ leftAd.image.url }}" alt="{{ leftAd.title }}">
-                    </a>
+                    {% if leftAd %}
+                        {% if leftAd.link %}
+                            <a target="_blank" href="{{ leftAd.link }}">
+                                <img class="img-fluid" src="{{ leftAd.image.url }}" alt="{{ leftAd.title }}">
+                            </a>
+                        {% endif %}
+                        {% if leftAd.html_tag %}
+                            {{ leftAd.html_tag | safe }}
+                        {% endif %}
+                    {% endif %}
                 </div>
                 {#                end of left ad#}
 
                 <div class="col-xl-4  my-bg-1 p-5" style="border-radius: 15px">
-                    {% include 'partials/_alert.html' %}
+{#                    {% include 'partials/_alert.html' %}#}
                     <p class="lead color-1 p-5">
                         You have achieved high points!!!!!!!!!!!!!.
                         As promised, we have sent you an email with the link to your portfolio website.
-                        If you didn't receive your email, or any email from us after filling the form, please let us
-                        know. <br>
+                        If you didn't receive the mail, check your spam box.<br>
                         You can contact us on
                         <a href="tel:+233543833501" class="color-1 text-decoration-none text-warning">
                             +233 543833501
                         </a> or
-                        <a href="mailto:contact@talentbuilder.top" class="color-1 text-decoration-none text-warning">
-                            contact@talentbuilder.top
+                        <a href="mailto:contact@talentbuildergh.com" class="color-1 text-decoration-none text-warning">
+                            contact@talentbuildergh.com
                         </a>
                     </p>
                 </div>
 
                 {#                right ad#}
                 <div id="rightAd" class="col-lg-4 pt-5">
-                    <a target="_blank" href="{{ rightAd.link }}">
-                        <img class="img-fluid" src="{{ rightAd.image.url }}" alt="{{ rightAd.title }}">
-                    </a>
+                    {% if rightAd %}
+                        {% if rightAd.link %}
+                            <a target="_blank" href="{{ rightAd.link }}">
+                                <img class="img-fluid" src="{{ rightAd.image.url }}" alt="{{ rightAd.title }}">
+                            </a>
+                        {% endif %}
+                        {% if rightAd.html_tag %}
+                            {{ rightAd.html_tag | safe }}
+                        {% endif %}
+                    {% endif %}
                 </div>
                 {#                end of right ad#}
             </div>
@@ -60,10 +81,15 @@
             <div class="row p-5 mb-5">
                 {% for data in bottomAd %}
                     <div class="col-2">
-                        <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
-                                                                       alt="{{ data.title }}"></a><br>
-                        <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
-                           class="color-2">{{ data.title }}</a>
+                        {% if data.link %}
+                            <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
+                                                                           alt="{{ data.title }}"></a><br>
+                            <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                               class="color-2">{{ data.title }}</a>
+                        {% endif %}
+                        {% if data.html_tag %}
+                            {{ data.html_tag | safe }}
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

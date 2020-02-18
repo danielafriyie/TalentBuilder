@@ -3,8 +3,9 @@ from django.utils.timezone import now
 
 
 class BannerAdRate(models.Model):
-    title = models.CharField(max_length=255)
-    rate = models.FileField(upload_to='BannerAds/%Y/%m/%d/')
+    title = models.CharField(max_length=255, blank=True, null=True)
+    rate = models.FileField(upload_to='BannerAds/%Y/%m/%d/', blank=True, null=True)
+    html_tag = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateTimeField(default=now())
 
     def __str__(self):
@@ -12,10 +13,11 @@ class BannerAdRate(models.Model):
 
 
 class TopAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    link = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='BannerAds/Portfolio/TopAd/%Y/%m/%d/', blank=True, null=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    html_tag = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateTimeField(default=now())
     expiry = models.DateTimeField()
     status = models.BooleanField(default=False)
@@ -25,10 +27,11 @@ class TopAd(models.Model):
 
 
 class BottomAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    link = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='BannerAds/Portfolio/BottomAd/%Y/%m/%d/', blank=True, null=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    html_tag = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateTimeField(default=now())
     expiry = models.DateTimeField()
     status = models.BooleanField(default=False)
@@ -38,10 +41,11 @@ class BottomAd(models.Model):
 
 
 class RightAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    link = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='BannerAds/Portfolio/RightAd/%Y/%m/%d/', blank=True, null=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    html_tag = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateTimeField(default=now())
     expiry = models.DateTimeField()
     status = models.BooleanField(default=False)
@@ -51,10 +55,11 @@ class RightAd(models.Model):
 
 
 class LeftAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    link = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='BannerAds/Portfolio/LeftAd/%Y/%m/%d/', blank=True, null=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    html_tag = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateTimeField(default=now())
     expiry = models.DateTimeField()
     status = models.BooleanField(default=False)
@@ -64,10 +69,11 @@ class LeftAd(models.Model):
 
 
 class PortfolioAd(models.Model):
-    name = models.CharField(max_length=255)
-    link = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    link = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='BannerAds/Portfolio/PortfolioAd/%Y/%m/%d/', blank=True, null=True)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    html_tag = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateTimeField(default=now())
     expiry = models.DateTimeField()
     status = models.BooleanField(default=False)

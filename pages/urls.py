@@ -8,5 +8,5 @@ urlpatterns = [
     path('terms/', views.terms, name='terms'),
     path('privacy/', views.privacy, name='privacy'),
     path('banner-ads/', views.banner_ads, name='banner_ads'),
-    # path('email/', views.my_mail, name='my_mail')
+    path('<int:client_id>.<slug:slug_name>/', views.client_portfolio_theme, name='client-portfolio-theme')
 ]

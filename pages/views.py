@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from . import models
 from advertisement.models import BannerAdRate
-from django.core.mail import send_mail
-from django.http import HttpResponse
-from upload_cv.models import UploadCVMailMessage
+from portfolio.models import Portfolio
 
 
 def home(request):
@@ -42,14 +40,18 @@ def banner_ads(request):
         return redirect('home')
 
 
-# def my_mail(request):
-#     email_msg = UploadCVMailMessage.objects.order_by('-date').all().first()
-#     msg_body = f'{email_msg.before_msg} Danny {email_msg.after_msg}'
-#     send_mail(
-#         email_msg.subject,
-#         msg_body,
-#         email_msg.host_user.host_user,
-#         ['danielafriyie98@gmail.com', 'afriyiedaniel1@outlook.com'],
-#         fail_silently=False,
-#     )
-#     return HttpResponse('<h1>EMAIL SENT</h1>')
+def client_portfolio_theme(request, slug_name, client_id):
+    p_id = Portfolio.objects.get(slug_name=slug_name, id=client_id)
+    context = {
+        'portfolio': p_id,
+    }
+
+    # theme check
+    if p_id.theme == 'black theme':
+        return render(request, 'portfolio/black_theme.html', context)
+    elif p_id.theme == 'blue theme':
+        return render(request, 'portfolio/blue_theme.html', context)
+    elif p_id.theme == 'green theme':
+        return render(request, 'portfolio/green_theme.html', context)
+    elif p_id.theme == 'nano theme':
+        return render(request, 'portfolio/nano_theme.html', context)

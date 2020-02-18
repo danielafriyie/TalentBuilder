@@ -6,10 +6,18 @@
         <div class="container-fluid">
             <div class="row pt-5">
                 <div class="col-12">
-                    <a target="_blank" href="{{ topAd.link }}">
-                        <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
-                             alt="{{ topAd.title }}">
-                    </a>
+                    {% if topAd %}
+                        {% if topAd.link %}
+                            <a target="_blank" href="{{ topAd.link }}">
+                                <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                                     alt="{{ topAd.title }}">
+                            </a>
+                        {% endif %}
+                        {% if topAd.html_tag %}
+                            {{ topAd.html_tag | safe }}
+                        {% endif %}
+
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -46,9 +54,9 @@
                                     <a href="tel:+233543833501" class="color-1 text-decoration-none text-warning">
                                         +233 543833501
                                     </a> or
-                                    <a href="mailto:contact@talentbuilder.top"
+                                    <a href="mailto:contact@talentbuildergh.com"
                                        class="color-1 text-decoration-none text-warning">
-                                        contact@talentbuilder.top
+                                        contact@talentbuildergh.com
                                     </a>
                                 </p>
                                 <a style="width: 100%;" class="btn btn-outline-warning"
@@ -65,9 +73,9 @@
                                     <a href="tel:+233543833501" class="color-1 text-decoration-none text-warning">
                                         +233 543833501
                                     </a> or
-                                    <a href="mailto:contact@talentbuilder.top"
+                                    <a href="mailto:contact@talentbuildergh.com"
                                        class="color-1 text-decoration-none text-warning">
-                                        contact@talentbuilder.top
+                                        contact@talentbuildergh.com
                                     </a>
                                 </p>
                             {% endif %}
@@ -82,10 +90,15 @@
             <div class="row p-5 mb-5">
                 {% for data in bottomAd %}
                     <div class="col-2">
-                        <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
-                                                                       alt="{{ data.title }}"></a><br>
-                        <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
-                           class="color-2">{{ data.title }}</a>
+                        {% if data.link %}
+                            <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
+                                                                           alt="{{ data.title }}"></a><br>
+                            <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                               class="color-2">{{ data.title }}</a>
+                        {% endif %}
+                        {% if data.html_tag %}
+                            {{ data.html_tag | safe }}
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

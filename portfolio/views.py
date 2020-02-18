@@ -28,7 +28,6 @@ def portfolio(request):
     if request.method == 'POST':
         # get form data
         name = request.POST['name']
-        slug_name = name.lower().replace(' ', '-')
         email = request.POST['email']
         phone = request.POST['phone']
         p_headline = request.POST['p_headline']
@@ -41,7 +40,7 @@ def portfolio(request):
         linkedin = request.POST['linkedin']
         theme = request.POST['theme']
         agree_to_terms = request.POST['agree_to_terms']
-        # banner_ad = models.PortfolioAd.objects.all().get(id=1)
+        slug_name = email.split('@')[0]
 
         # check for existing email
         if models.Portfolio.objects.filter(email=email).exists():
@@ -186,8 +185,8 @@ def appreciation(request):
     return render(request, 'portfolio/appreciation.html', context)
 
 
-def portfolio_theme(request, portfolio_id, slug_name):
-    p_id = models.Portfolio.objects.get(id=portfolio_id, slug_name=slug_name)
+def portfolio_theme(request, slug_name, client_id):
+    p_id = models.Portfolio.objects.get(slug_name=slug_name, id=client_id)
     context = {
         'portfolio': p_id,
     }
@@ -212,7 +211,7 @@ def search_portfolio(request):
 
     query_set_list = models.Portfolio.objects.order_by('id')
     sent = ''
-    portfolio_link = 'https://wwww.talentbuilder.top/portfolio/'
+    portfolio_link = 'https://talentbuildergh.com/'
 
     if 'sent' in request.GET:
         sent = request.GET['sent']

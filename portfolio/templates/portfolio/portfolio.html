@@ -8,10 +8,18 @@
         <div class="container-fluid">
             <div class="row pt-5">
                 <div class="col-12">
-                    <a target="_blank" href="{{ topAd.link }}">
-                        <img id="addImage" class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
-                             alt="{{ topAd.title }}">
-                    </a>
+                    {% if topAd %}
+                        {% if topAd.link %}
+                            <a target="_blank" href="{{ topAd.link }}">
+                                <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
+                                     alt="{{ topAd.title }}">
+                            </a>
+                        {% endif %}
+                        {% if topAd.html_tag %}
+                            {{ topAd.html_tag | safe }}
+                        {% endif %}
+
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -24,10 +32,17 @@
             </div>
             <div class="row py-5 justify-content-center align-items-center">
                 {#                left ad#}
-                <div id="leftAd" class="col-lg-3">
-                    <a target="_blank" href="{{ leftAd.link }}">
-                        <img class="img-fluid" src="{{ leftAd.image.url }}" alt="{{ leftAd.title }}">
-                    </a>
+                <div id="leftAd" class="col-lg-4 pt-5">
+                    {% if leftAd %}
+                        {% if leftAd.link %}
+                            <a target="_blank" href="{{ leftAd.link }}">
+                                <img class="img-fluid" src="{{ leftAd.image.url }}" alt="{{ leftAd.title }}">
+                            </a>
+                        {% endif %}
+                        {% if leftAd.html_tag %}
+                            {{ leftAd.html_tag | safe }}
+                        {% endif %}
+                    {% endif %}
                 </div>
                 {#                end of left ad#}
 
@@ -121,10 +136,17 @@
                 </div>
 
                 {#                right ad#}
-                <div id="rightAd" class="col-lg-3">
-                    <a target="_blank" href="{{ rightAd.link }}">
-                        <img class="img-fluid" src="{{ rightAd.image.url }}" alt="{{ rightAd.title }}">
-                    </a>
+                <div id="rightAd" class="col-lg-4 pt-5">
+                    {% if rightAd %}
+                        {% if rightAd.link %}
+                            <a target="_blank" href="{{ rightAd.link }}">
+                                <img class="img-fluid" src="{{ rightAd.image.url }}" alt="{{ rightAd.title }}">
+                            </a>
+                        {% endif %}
+                        {% if rightAd.html_tag %}
+                            {{ rightAd.html_tag | safe }}
+                        {% endif %}
+                    {% endif %}
                 </div>
                 {#                end of right ad#}
             </div>
@@ -135,11 +157,15 @@
             <div class="row p-5 mb-5">
                 {% for data in bottomAd %}
                     <div class="col-2">
-                        <a target="_blank" href="{{ data.link }}"><img id="addImage" class="img-fluid"
-                                                                       src="{{ data.image.url }}"
-                                                                       alt="{{ data.title }}"></a><br>
-                        <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
-                           class="color-2">{{ data.title }}</a>
+                        {% if data.link %}
+                            <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
+                                                                           alt="{{ data.title }}"></a><br>
+                            <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                               class="color-2">{{ data.title }}</a>
+                        {% endif %}
+                        {% if data.html_tag %}
+                            {{ data.html_tag | safe }}
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

@@ -28,5 +28,5 @@ class UploadCVMailMessage(models.Model):
     subject = models.CharField(max_length=255)
     before_msg = models.CharField(max_length=255)
     after_msg = models.CharField(max_length=255)
-    host_user = models.EmailField(max_length=255)
+    host_user = models.CharField(max_length=255)
     date = models.DateTimeField(default=now())
