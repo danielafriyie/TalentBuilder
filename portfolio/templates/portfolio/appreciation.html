@@ -8,7 +8,7 @@
             <div class="row pt-5">
                 <div class="col-12">
                     {% if topAd %}
-                        {% if topAd.link %}
+                        {% if topAd.image %}
                             <a target="_blank" href="{{ topAd.link }}">
                                 <img class="img-fluid" src="{{ topAd.image.url }}" style="width: 100%"
                                      alt="{{ topAd.title }}">
@@ -16,6 +16,8 @@
                         {% endif %}
                         {% if topAd.html_tag %}
                             {{ topAd.html_tag | safe }}
+                            <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                               class="color-2">{{ data.title }}</a>
                         {% endif %}
 
                     {% endif %}
@@ -31,13 +33,15 @@
                 {#                left ad#}
                 <div id="leftAd" class="col-lg-4 pt-5">
                     {% if leftAd %}
-                        {% if leftAd.link %}
+                        {% if leftAd.image %}
                             <a target="_blank" href="{{ leftAd.link }}">
                                 <img class="img-fluid" src="{{ leftAd.image.url }}" alt="{{ leftAd.title }}">
                             </a>
                         {% endif %}
                         {% if leftAd.html_tag %}
                             {{ leftAd.html_tag | safe }}
+                            <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                               class="color-2">{{ data.title }}</a>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -62,13 +66,15 @@
                 {#                right ad#}
                 <div id="rightAd" class="col-lg-4 pt-5">
                     {% if rightAd %}
-                        {% if rightAd.link %}
+                        {% if rightAd.image %}
                             <a target="_blank" href="{{ rightAd.link }}">
                                 <img class="img-fluid" src="{{ rightAd.image.url }}" alt="{{ rightAd.title }}">
                             </a>
                         {% endif %}
                         {% if rightAd.html_tag %}
                             {{ rightAd.html_tag | safe }}
+                            <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                               class="color-2">{{ data.title }}</a>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -81,7 +87,7 @@
             <div class="row p-5 mb-5">
                 {% for data in bottomAd %}
                     <div class="col-2">
-                        {% if data.link %}
+                        {% if data.image %}
                             <a target="_blank" href="{{ data.link }}"><img class="img-fluid" src="{{ data.image.url }}"
                                                                            alt="{{ data.title }}"></a><br>
                             <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
@@ -89,6 +95,8 @@
                         {% endif %}
                         {% if data.html_tag %}
                             {{ data.html_tag | safe }}
+                            <a target="_blank" href="{{ data.link }}" style="font-size: 1.2rem; font-weight: bold"
+                               class="color-2">{{ data.title }}</a>
                         {% endif %}
                     </div>
                 {% endfor %}
