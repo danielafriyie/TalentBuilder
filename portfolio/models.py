@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.timezone import now
 from advertisement.models import PortfolioAd
+
+
 # from pages.models import MyEmailConfiguration
 
 
@@ -30,6 +32,9 @@ class Portfolio(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return f'/{self.id}.{self.slug_name}'
 
 
 class EmailAction(models.Model):
